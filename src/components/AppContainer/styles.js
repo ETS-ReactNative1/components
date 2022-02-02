@@ -15,7 +15,7 @@ export default makeStyles((theme) => ({
     },
   },
   widgetsContainer: {
-    width: "100%",
+    width: "30%",
     height: "100%",
   },
   listingsWidgetContainer: {
