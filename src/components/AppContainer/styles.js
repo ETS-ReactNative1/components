@@ -2,7 +2,6 @@ import { makeStyles } from "@material-ui/core/styles";
 
 export default makeStyles((theme) => ({
   container: {
-    width: "95vw",
     display: "flex",
     padding: 10,
     height: "calc(100vh - 61px)",
@@ -13,10 +12,11 @@ export default makeStyles((theme) => ({
       padding: 13.5,
       height: "auto",
     },
+    padding: "0 7%",
+    marginTop: 20,
   },
-  widgetsContainer: {
-    width: "30%",
-    height: "100%",
+    widgetsContainer: {
+      width: "100%",
   },
   listingsWidgetContainer: {
     width: "50%",

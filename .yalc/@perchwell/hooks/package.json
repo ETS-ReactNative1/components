@@ -1,0 +1,21 @@
+{
+  "name": "@perchwell/hooks",
+  "version": "2.4.2",
+  "description": "Hooks for perchwell projects",
+  "main": "build/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel lib -d build"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@perchwell/utils": "^2.4.2"
+  },
+  "peerDependencies": {
+    "@material-ui/core": "^4.9.13",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "yalcSig": "ed59e6438a3859eb5cbad34736da94dc"
+}

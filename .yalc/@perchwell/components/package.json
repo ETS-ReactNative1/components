@@ -1,0 +1,28 @@
+{
+  "name": "@perchwell/components",
+  "version": "2.5.0-alpha.11",
+  "description": "Perchwell react components",
+  "main": "build/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel lib -d build --copy-files"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@perchwell/utils": "file:.yalc/@perchwell/utils",
+    "html-react-parser": "^0.13.0",
+    "react-intersection-observer": "^8.27.1",
+    "react-player": "^2.6.0",
+    "react-slick": "^0.27.9",
+    "recharts": "^2.0.10",
+    "uuid": "^8.3.0"
+  },
+  "peerDependencies": {
+    "@material-ui/core": "^4.9.13",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "styled-components": "^5.1.0"
+  },
+  "yalcSig": "b6b5769d6fdfac6e8e88669bc2ae3e89"
+}

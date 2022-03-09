@@ -1,0 +1,17 @@
+{
+  "name": "@perchwell/api",
+  "version": "2.4.2",
+  "description": "Perchwell api",
+  "main": "build/index.js",
+  "scripts": {
+    "build": "babel lib -d build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@perchwell/utils": "^2.4.2",
+    "querystring": "^0.2.0"
+  },
+  "yalcSig": "532752bb2fa25e3c616b67c93e09926c"
+}

@@ -1,0 +1,29 @@
+{
+  "version": "v1",
+  "packages": {
+    "@perchwell/api": {
+      "signature": "532752bb2fa25e3c616b67c93e09926c",
+      "file": true
+    },
+    "@perchwell/components": {
+      "signature": "b6b5769d6fdfac6e8e88669bc2ae3e89",
+      "file": true
+    },
+    "@perchwell/utils": {
+      "signature": "88e5bd41e811e1e247fce48e9ca0e8a6",
+      "file": true
+    },
+    "@perchwell/seo": {
+      "signature": "02c3ed9677e331f90a9c0a39ece2dcc3",
+      "file": true
+    },
+    "@perchwell/domain": {
+      "signature": "58d03e1e579800718fd1a72a8aea9992",
+      "file": true
+    },
+    "@perchwell/hooks": {
+      "signature": "ed59e6438a3859eb5cbad34736da94dc",
+      "file": true
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "name": "@perchwell/utils",
+  "version": "2.4.2",
+  "description": "Perchwell utils",
+  "main": "build/index.js",
+  "scripts": {
+    "build": "babel lib -d build",
+    "test": "jest --passWithNoTests",
+    "test:watch": "yarn test --watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@perchwell/domain": "^2.4.2",
+    "fuse.js": "^6.0.1"
+  },
+  "yalcSig": "31b56647faf004f41062ff382937889c"
+}

@@ -1,0 +1,7 @@
+.react-player {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-height: 56.25vw; /* 100 * 9 / 16 */
+}

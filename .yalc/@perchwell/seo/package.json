@@ -1,0 +1,13 @@
+{
+  "name": "@perchwell/seo",
+  "version": "2.4.2",
+  "description": "Seo components for perchwell projects",
+  "main": "build/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel lib -d build"
+  },
+  "author": "",
+  "license": "ISC",
+  "yalcSig": "02c3ed9677e331f90a9c0a39ece2dcc3"
+}

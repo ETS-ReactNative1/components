@@ -1,0 +1,10 @@
+{
+  "version": "v1",
+  "packages": {
+    "@perchwell/utils": {
+      "signature": "31b56647faf004f41062ff382937889c",
+      "file": true,
+      "replaced": "^2.5.0-alpha.11"
+    }
+  }
+}
