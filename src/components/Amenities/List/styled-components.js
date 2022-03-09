@@ -30,4 +30,5 @@ export const ListItem = styled.div`
   padding-bottom: 3px;
   border-bottom: 1px solid #f2f4f6;
   width: max-content;
+  margin-bottom: 3px;
 `;

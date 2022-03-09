@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Container, Title, ListItem } from "./styled-components";
 import { Grid } from "@material-ui/core";
 
-const List = ({ data }) => {
+const List = ({ data, isMobile }) => {
   const { title, elements = [] } = data;
   return (
     <Container>
@@ -11,7 +11,7 @@ const List = ({ data }) => {
       <Grid container>
         {elements.map((element, index) => (
           <Grid item xs={6} key={index}>
-            <ListItem>{element.title}</ListItem>
+            <ListItem isMobile={isMobile}>{element.title}</ListItem>
           </Grid>
         ))}
       </Grid>

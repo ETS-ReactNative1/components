@@ -5,7 +5,7 @@ import Highlights from "./Highlights";
 import List from "./List";
 
 const Amenities = (props) => {
-  const { data } = props;
+  const { data, isMobile } = props;
   if (!data) {
     return null;
   }
@@ -21,12 +21,14 @@ const Amenities = (props) => {
   const buildingAmenities = subsections.find(
     (subsection) => subsection.title === "Building Amenities"
   );
+
+  const common = { isMobile };
   return (
-    <Container>
-      <Title>Amenities</Title>
-      {highlights && <Highlights data={highlights} />}
-      {unitAmenities && <List data={unitAmenities} />}
-      {buildingAmenities && <List data={buildingAmenities} />}
+    <Container {...common}>
+      <Title {...common}>Amenities</Title>
+      {highlights && <Highlights {...common} data={highlights} />}
+      {unitAmenities && <List {...common} data={unitAmenities} />}
+      {buildingAmenities && <List {...common} data={buildingAmenities} />}
     </Container>
   );
 };

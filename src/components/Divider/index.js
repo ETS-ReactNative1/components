@@ -1,8 +1,8 @@
 import React from "react";
 import { Container } from "./styled-components";
 
-const Divider = () => {
-  return <Container></Container>;
+const Divider = ({ isMobile }) => {
+  return <Container isMobile={isMobile}></Container>;
 };
 
 export default Divider;

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Container, Title, Text, Button } from "./styled-components";
 import { useEventListener } from "../../hooks/useEventListener";
 
-const Description = ({ title, text, ...rest }) => {
+const Description = ({ title, text, isMobile, ...rest }) => {
   const [expanded, setExpanded] = useState(false);
   const [showButton, setShowButton] = useState(false);
 
@@ -21,10 +21,10 @@ const Description = ({ title, text, ...rest }) => {
   }, []);
 
   useEventListener("resize", checkContent);
-
+  const common = { isMobile };
   return (
     <Container {...rest}>
-      <Title>{title}</Title>
+      <Title {...common}>{title}</Title>
 
       <Text
         lines={expanded ? false : 3}
@@ -39,7 +39,7 @@ const Description = ({ title, text, ...rest }) => {
       </Text>
 
       {showButton && (
-        <Button onClick={() => setExpanded((value) => !value)}>
+        <Button {...common} onClick={() => setExpanded((value) => !value)}>
           {expanded ? "Less" : "Read More"}
         </Button>
       )}

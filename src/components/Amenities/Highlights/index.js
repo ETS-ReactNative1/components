@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Container, Title } from "./styled-components";
-import { Element } from "./Element";
 import ElementsRow from "./ElementsRow";
 
 function createRows(elements) {
@@ -22,14 +21,14 @@ function createRows(elements) {
   return rows;
 }
 
-const Highlights = ({ data }) => {
+const Highlights = ({ data, isMobile }) => {
   const { title, elements = [] } = data;
   const rows = createRows(elements);
   return (
     <Container>
-      <Title>{title}</Title>
+      <Title isMobile={isMobile}>{title}</Title>
       {rows.map((row, index) => (
-        <ElementsRow key={index} elements={row} />
+        <ElementsRow key={index} elements={row} isMobile={isMobile} />
       ))}
     </Container>
   );
@@ -37,6 +36,7 @@ const Highlights = ({ data }) => {
 
 Highlights.propTypes = {
   data: PropTypes.object.isRequired,
+  isMobile: PropTypes.bool,
 };
 
 export default Highlights;

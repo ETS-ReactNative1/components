@@ -13,6 +13,12 @@ export const Title = styled.div`
   line-height: 34px;
   letter-spacing: -0.6000000238418579px;
   margin-bottom: 36px;
+
+  ${({ isMobile }) =>
+    isMobile && {
+      fontSize: 24,
+      lineHeight: "24px",
+    }}
 `;
 
 export const Text = styled(ShowMoreText)`
@@ -26,6 +32,7 @@ export const Text = styled(ShowMoreText)`
   ${({ fade }) =>
     fade &&
     `-webkit-mask-image: linear-gradient(180deg, #000 24.15%, transparent);`}
+
   margin-bottom: 20px;
   text-align: justify;
 `;
@@ -42,4 +49,8 @@ export const Button = styled.div`
   border-radius: 8px;
   width: max-content;
   padding: 7px 12px;
+  ${({ isMobile }) =>
+    isMobile && {
+      fontWeight: 700,
+    }}
 `;

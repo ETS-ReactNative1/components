@@ -9,6 +9,11 @@ export const Title = styled.div`
   font-weight: 700;
   line-height: 34px;
   letter-spacing: -0.6000000238418579px;
-  color: #3b5568;
   margin-bottom: 19px;
+
+  ${({ isMobile }) =>
+    isMobile && {
+      fontSize: 24,
+      lineHeight: "24px",
+    }}
 `;

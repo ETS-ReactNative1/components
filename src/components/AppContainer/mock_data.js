@@ -15,27 +15,15 @@ export const MOCK_DATA = [
             icon: "icon-fireplace",
           },
           {
-            title: "Dishwasher",
+            title: "Washer/dryer",
             icon: "icon-fireplace",
           },
           {
-            title: "Air Conditioning",
+            title: "Gym",
             icon: "icon-fireplace",
           },
           {
             title: "Pets",
-            icon: "icon-fireplace",
-          },
-          {
-            title: "Private Outdoor Space",
-            icon: "icon-fireplace",
-          },
-          {
-            title: "Building Laundry",
-            icon: "icon-fireplace",
-          },
-          {
-            title: "In Unit Laundry",
             icon: "icon-fireplace",
           },
         ],
