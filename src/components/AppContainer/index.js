@@ -1,11 +1,8 @@
 import { Grid, useMediaQuery, useTheme } from "@material-ui/core";
 import React from "react";
-import Amenities from "../Amenities";
-import { Description } from "../Description";
-import Divider from "../Divider";
-
 import useStyles from "./styles";
-import { MOCK_DATA } from "./mock_data";
+import { History } from "../History";
+import { HISTORY_MOCK } from "./history_mock";
 
 const AppContainer = () => {
   const classes = useStyles();
@@ -16,8 +13,19 @@ const AppContainer = () => {
   return (
     <div className={classes.container}>
       <Grid container>
-        <Grid item md={6} xs={12}>
-          <Description
+        <Grid item md={8} xs={12}>
+          <History data={HISTORY_MOCK} />
+        </Grid>
+      </Grid>
+    </div>
+  );
+};
+
+export default AppContainer;
+
+/*
+
+  <Description
             {...common}
             title={"About This Home"}
             text={`Elit tempor dolore duis commodo. Aliqua pariatur est mollit consequat ea ut. Sint exercitation non aute amet nisi nisi culpa ex dolore nostrud veniam ullamco eu. Amet reprehenderit minim nisi elit aliquip do consequat excepteur esse consectetur. Consequat velit est reprehenderit ipsum est deserunt cupidatat nisi excepteur amet culpa magna. Nostrud dolor deserunt proident enim non sit exercitation minim cupidatat ad.
@@ -34,10 +42,6 @@ Incididunt anim voluptate incididunt minim nisi. Ut fugiat fugiat voluptate moll
             {...common}
             data={MOCK_DATA.find((item) => item.type === "amenities")}
           />
-        </Grid>
-      </Grid>
-    </div>
-  );
-};
 
-export default AppContainer;
+
+*/
