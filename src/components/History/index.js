@@ -9,8 +9,8 @@ const History = ({ data }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const [tab, setCurrentTab] = useState("Sales");
-  const { current_owner, history } = data;
-
+  const { current_owner, history, current_listings } = data;
+  const current_listings_ids = current_listings.map((listing) => listing.id);
   return (
     <Container>
       <Title>History</Title>
@@ -20,7 +20,11 @@ const History = ({ data }) => {
         owner={current_owner}
       />
       <Tabs tab={tab} onChange={setCurrentTab} isMobile={isMobile} />
-      <HistoryItems history={history} tab={tab} />
+      <HistoryItems
+        history={history}
+        tab={tab}
+        listingsIds={current_listings_ids}
+      />
     </Container>
   );
 };

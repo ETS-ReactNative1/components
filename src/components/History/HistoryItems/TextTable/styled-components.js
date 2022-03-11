@@ -9,11 +9,11 @@ export const ListingTextContainer = styled.div`
   justify-content: space-between;
   align-items: flex-start;
   width: 50%;
-  padding-right: 15px;
   ${({ isMobile }) =>
     isMobile && {
       paddingLeft: 17,
       width: 52,
+      minWidth: 52,
     }}
 `;
 
@@ -22,7 +22,6 @@ export const ListingChangeContainer = styled.div`
   align-items: flex-start;
   width: 50%;
   min-height: 28px;
-  padding-left: 15px;
 
   ${({ isMobile }) =>
     isMobile && {

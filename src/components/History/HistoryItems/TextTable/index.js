@@ -15,12 +15,12 @@ import {
   LinkContainer,
   Link,
   Dot,
-  Column,
 } from "./styled-components";
 import { format } from "date-fns";
 import { ChangeLabel } from "./ChangeLabel";
 import { ExternalLinkIcon } from "./icons";
 import { useMediaQuery, useTheme } from "@material-ui/core";
+import TimeLineDot from "./TimeLineDot";
 
 function formatDate(time) {
   return format(new Date(time), "M-dd-yy");
@@ -30,12 +30,12 @@ function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-const TextTable = ({ data = [] }) => {
+const TextTable = ({ data = [], listingsIds = [] }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const c = { isMobile };
 
-  const renderPriceColumn = (j, activity) => {
+  const renderRightColumn = (j, activity) => {
     const hasLinks = !!activity.links.length;
     const url = !hasLinks ? "" : activity.links[0].url;
     const linkText = !hasLinks ? "" : activity.links[0].link_text;
@@ -75,9 +75,13 @@ const TextTable = ({ data = [] }) => {
           <ItemContainer key={`i-${i}`}>
             {item.activity.map((activity, j) => {
               const text = j === 0 ? item.listings[0].text : "";
+
+              const isLastActivity =
+                j === item.activity.length - 1 && i === data.length - 1;
+
               return (
                 <Row {...c}>
-                  <ListingTextContainer key={`j-${j}`} {...c}>
+                  <ListingTextContainer key={`i-${i}-j-${j}`} {...c}>
                     {!isMobile && (
                       <Text {...c} href={activity.listing_id} target="_blank">
                         {text}
@@ -85,7 +89,14 @@ const TextTable = ({ data = [] }) => {
                     )}
                     <DateText>{formatDate(activity.time)}</DateText>
                   </ListingTextContainer>
-                  {renderPriceColumn(j, activity)}
+                  <TimeLineDot
+                    currentListingsIds={listingsIds}
+                    terminus={activity.terminus}
+                    listingId={activity.listing_id}
+                    id={`dot-${i}-${j}`}
+                    isLast={isLastActivity}
+                  />
+                  {renderRightColumn(j, activity)}
                 </Row>
               );
             })}
