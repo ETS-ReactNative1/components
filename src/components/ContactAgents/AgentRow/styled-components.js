@@ -16,6 +16,7 @@ export const Row = styled.div`
   border-radius: 8px;
   height: 28px;
   align-items: center;
+  justify-content: space-around;
   &:hover {
     background-color: #f2f4f6;
   }
@@ -36,5 +37,5 @@ export const AgentName = styled.div`
   font-weight: 700;
   line-height: 20px;
   letter-spacing: 0.20000000298023224px;
-  width: 25%;
+  width: 15%;
 `;

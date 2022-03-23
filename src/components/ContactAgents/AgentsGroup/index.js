@@ -16,7 +16,12 @@ const AgentsGroup = ({
   subheaderText,
   contactButtonText,
   agents = [],
+  onContactClick,
 }) => {
+  if (agents.length === 0) {
+    return null;
+  }
+
   return (
     <Container>
       <Title>{title}</Title>
@@ -40,7 +45,9 @@ const AgentsGroup = ({
         />
       ))}
 
-      <ContactButton>{contactButtonText}</ContactButton>
+      <ContactButton onClick={onContactClick}>
+        {contactButtonText}
+      </ContactButton>
     </Container>
   );
 };

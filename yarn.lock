@@ -461,7 +461,7 @@
 "@perchwell/components@file:.yalc/@perchwell/components":
   version "2.5.0-alpha.11"
   dependencies:
-    "@perchwell/utils" "file:../../../Library/Caches/Yarn/v6/npm-@perchwell-components-2.5.0-alpha.11-cc2b3643-0b09-4a31-bef6-81274f050860-1646952318495/node_modules/@perchwell/components/.yalc/@perchwell/utils"
+    "@perchwell/utils" "file:../../../../../usr/local/share/Library/Caches/Yarn/v6/npm-@perchwell-components-2.5.0-alpha.11-4c2907d8-3bce-41ee-bb68-9bb729229359-1648007455294/node_modules/@perchwell/components/.yalc/@perchwell/utils"
     html-react-parser "^0.13.0"
     react-intersection-observer "^8.27.1"
     react-player "^2.6.0"
@@ -6484,7 +6484,7 @@ react-fast-compare@^3.0.1:
   resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-3.2.0.tgz#641a9da81b6a6320f270e89724fb45a0b39e43bb"
   integrity sha512-rtGImPZ0YyLrscKI9xTpV8psd6I8VAtjKCzQDlzyDvqJA8XOW78TXYQwNRNd8g8JZnDu8q9Fu/1v4HPAVwVdHA==
 
-react-intersection-observer@^8.27.1:
+react-intersection-observer@^8.27.1, react-intersection-observer@^8.33.1:
   version "8.33.1"
   resolved "https://registry.yarnpkg.com/react-intersection-observer/-/react-intersection-observer-8.33.1.tgz#8e6442cac7052ed63056e191b7539e423e7d5c64"
   integrity sha512-3v+qaJvp3D1MlGHyM+KISVg/CMhPiOlO6FgPHcluqHkx4YFCLuyXNlQ/LE6UkbODXlQcLOppfX6UMxCEkUhDLw==

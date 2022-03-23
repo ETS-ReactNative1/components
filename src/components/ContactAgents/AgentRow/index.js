@@ -4,7 +4,6 @@ import { Container, Row, AvatarImage, AgentName } from "./styled-components";
 import { IconButton } from "@material-ui/core";
 import { EllipsisIcon, PhoneIcon, MailIcon } from "./icons";
 import ActionsMenu from "../../ActionsMenu";
-import { Email, Phone } from "../AgentDetail/icons";
 
 const AgentRow = ({ agent, ...rest }) => {
   const {
@@ -17,9 +16,15 @@ const AgentRow = ({ agent, ...rest }) => {
 
   const buttonRef = useRef(null);
 
-  /*   if (agent_image || display_name || brokerage_display_name || phone || email) {
+  if (
+    !agent_image ||
+    !display_name ||
+    !brokerage_display_name ||
+    !phone ||
+    !email
+  ) {
     return null;
-  } */
+  }
 
   const menuOptions = [
     {

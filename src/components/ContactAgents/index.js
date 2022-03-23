@@ -54,12 +54,14 @@ const ContactAgents = () => {
           subheaderText="If you represented the seller in this transaction"
           contactButtonText="Contact Listing Agent"
           agents={sellerAgents}
+          onContactClick={() => {}}
         />
         <AgentsGroup
           title="Buyer Representation"
           subheaderText="If you also represented the buyer in this transaction"
           contactButtonText="Contact Buyer Reps"
           agents={buyerAgents}
+          onContactClick={() => {}}
         />
       </Container>
     </Panel>
