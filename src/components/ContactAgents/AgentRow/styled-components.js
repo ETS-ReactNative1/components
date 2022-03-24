@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  height: 60px;
+  height: 74px;
   border-top: 1px solid #e6e9eb;
 
   ${({ isLast }) =>
@@ -19,7 +19,7 @@ export const Cell = styled.div`
   display: flex;
   padding: 16px 12px;
   border-radius: 8px;
-  height: 28px;
+  height: 43px;
   align-items: center;
   &:hover {
     background-color: #f2f4f6;
@@ -38,7 +38,7 @@ export const AgentInfoContainer = styled.div`
   flex: 1;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   ${({ isMobile }) =>
     isMobile && {
       flexDirection: 'column',
@@ -63,10 +63,21 @@ export const AgentName = styled.div`
   line-height: 20px;
   letter-spacing: 0.20000000298023224px;
   width: 15%;
-
+  display: flex;
+  flex-direction: column;
   ${({ isMobile }) =>
     isMobile && {
       width: 'auto',
       marginBottom: 4
     }}
+`;
+
+export const PhoneText = styled.div`
+  font-family: GloberAdjusted;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: 0.20000000298023224px;
+  text-align: left;
 `;

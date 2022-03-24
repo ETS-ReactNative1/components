@@ -1,6 +1,13 @@
 import React, { useRef } from 'react';
 import { AgentDetail } from '../AgentDetail';
-import { Container, Cell, AvatarImage, AgentName, AgentInfoContainer } from './styled-components';
+import {
+  Container,
+  Cell,
+  AvatarImage,
+  AgentName,
+  AgentInfoContainer,
+  PhoneText
+} from './styled-components';
 import { IconButton, useMediaQuery, useTheme } from '@material-ui/core';
 import { EllipsisIcon, PhoneIcon, MailIcon } from './icons';
 import ActionsMenu from '../../ActionsMenu';
@@ -45,10 +52,14 @@ const AgentRow = ({ agent, ...rest }) => {
       <Cell isMobile={isMobile}>
         <AvatarImage src={agent_image} />
         <AgentInfoContainer isMobile={isMobile}>
-          <AgentName isMobile={isMobile}>{display_name}</AgentName>
+          <AgentName isMobile={isMobile}>
+            {display_name}
+            {!isMobile && <PhoneText>{phone}</PhoneText>}
+          </AgentName>
           <AgentDetail icon={'briefcase'} text={brokerage_display_name} isMobile={isMobile} />
-          <AgentDetail icon={'phone'} text={phone} isMobile={isMobile} />
           <AgentDetail icon={'email'} text={email} isMobile={isMobile} />
+
+          {isMobile && <AgentDetail icon={'phone'} text={phone} isMobile={isMobile} />}
 
           {!isMobile && (
             <IconButton ref={buttonRef}>
