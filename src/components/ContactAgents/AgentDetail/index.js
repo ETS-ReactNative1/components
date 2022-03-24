@@ -1,19 +1,20 @@
-import React from "react";
-import { Briefcase, Phone, Email } from "./icons";
-import { Container, IconContainer, Text } from "./styled-components";
+import React from 'react';
+import { Briefcase, Phone, Email } from './icons';
+import { Container, IconContainer, Text } from './styled-components';
 
 const iconsMap = {
   briefcase: <Briefcase />,
   phone: <Phone />,
-  email: <Email />,
+  email: <Email />
 };
 
-const AgentDetail = ({ icon, text }) => {
+const AgentDetail = ({ icon, text, isMobile }) => {
   const iconComponent = iconsMap[icon];
+
   return (
     <Container>
-      <IconContainer>{iconComponent}</IconContainer>
-      <Text>{text}</Text>
+      {!isMobile && <IconContainer>{iconComponent}</IconContainer>}
+      <Text isMobile={isMobile}>{text}</Text>
     </Container>
   );
 };

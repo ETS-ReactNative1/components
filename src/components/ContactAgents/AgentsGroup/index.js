@@ -1,6 +1,7 @@
-import React from "react";
-import { ExternalLink } from "../../ExternalLink";
-import { AgentRow } from "../AgentRow";
+import { useMediaQuery, useTheme } from '@material-ui/core';
+import React from 'react';
+import { ExternalLink } from '../../ExternalLink';
+import { AgentRow } from '../AgentRow';
 import {
   Container,
   Title,
@@ -8,44 +9,35 @@ import {
   SHTextContainer,
   SHText,
   ClaimListing,
-  ContactButton,
-} from "./styled-components";
+  ContactButton
+} from './styled-components';
 
-const AgentsGroup = ({
-  title,
-  subheaderText,
-  contactButtonText,
-  agents = [],
-  onContactClick,
-}) => {
+const AgentsGroup = ({ title, subheaderText, contactButtonText, agents = [], onContactClick }) => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
   if (agents.length === 0) {
     return null;
   }
 
   return (
-    <Container>
+    <Container isMobile={isMobile}>
       <Title>{title}</Title>
-      <SubHeaderContainer>
-        <SHTextContainer>
+      <SubHeaderContainer isMobile={isMobile}>
+        <SHTextContainer isMobile={isMobile}>
           <SHText>
-            {subheaderText}&nbsp;•&nbsp;
+            {subheaderText}
+            {!isMobile ? <span>&nbsp;•&nbsp;</span> : <span>&nbsp;</span>}
             <ClaimListing>Claim Listing</ClaimListing>
           </SHText>
         </SHTextContainer>
-        <ExternalLink
-          url="www.google.com"
-          text="Listing on Brokerage Website"
-        />
+        <ExternalLink url="www.google.com" text="Listing on Brokerage Website" />
       </SubHeaderContainer>
       {agents.map((agent, index) => (
-        <AgentRow
-          key={agent.id || index}
-          agent={agent}
-          isLast={index === agents.length - 1}
-        />
+        <AgentRow key={agent.id || index} agent={agent} isLast={index === agents.length - 1} />
       ))}
 
-      <ContactButton onClick={onContactClick}>
+      <ContactButton isMobile={isMobile} onClick={onContactClick}>
         {contactButtonText}
       </ContactButton>
     </Container>

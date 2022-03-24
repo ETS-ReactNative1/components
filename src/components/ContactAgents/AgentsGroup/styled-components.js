@@ -1,7 +1,13 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.div`
   margin-bottom: 40px;
+
+  ${({ isMobile }) =>
+    isMobile && {
+      marginBottom: 16
+    }}
+
   &:last-child {
     margin-bottom: 0;
   }
@@ -15,6 +21,7 @@ export const Title = styled.div`
   line-height: 21px;
   letter-spacing: 0.20000000298023224px;
   margin-bottom: 4px;
+  color: #3b5568;
 `;
 
 export const SubHeaderContainer = styled.div`
@@ -22,12 +29,22 @@ export const SubHeaderContainer = styled.div`
   justify-content: space-between;
   width: 100%;
   margin-bottom: 17px;
+
+  ${({ isMobile }) =>
+    isMobile && {
+      flexDirection: 'column'
+    }}
 `;
 
 export const SHTextContainer = styled.div`
   display: flex;
   flex: 1;
   color: #606060;
+
+  ${({ isMobile }) =>
+    isMobile && {
+      marginBottom: 12
+    }}
 `;
 export const SHText = styled.div`
   font-family: GloberAdjusted;
@@ -70,4 +87,9 @@ export const ContactButton = styled.div`
   letter-spacing: 0.20000000298023224px;
   text-align: center;
   color: #2a7a7b;
+
+  ${({ isMobile }) =>
+    isMobile && {
+      width: '100%'
+    }}
 `;

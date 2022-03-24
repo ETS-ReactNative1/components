@@ -1,9 +1,14 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
   align-items: center;
   min-width: 10%;
+  margin-bottom: 4px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 `;
 
 export const IconContainer = styled.div`
@@ -18,4 +23,8 @@ export const Text = styled.div`
   line-height: 18px;
   letter-spacing: 0.20000000298023224px;
   color: #000;
+  ${({ isMobile }) =>
+    isMobile && {
+      color: '#606060'
+    }}
 `;
