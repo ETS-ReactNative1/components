@@ -1,4 +1,11 @@
 import styled from 'styled-components';
+import { Box } from '@material-ui/core';
+
+export const AvatarContainer = styled(Box)`
+  width: 40px;
+  height: 40px;
+  margin-right: 12px;
+`;
 
 export const Container = styled.div`
   height: 74px;

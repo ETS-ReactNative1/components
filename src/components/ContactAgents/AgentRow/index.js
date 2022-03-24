@@ -3,14 +3,15 @@ import { AgentDetail } from '../AgentDetail';
 import {
   Container,
   Cell,
-  AvatarImage,
   AgentName,
   AgentInfoContainer,
-  PhoneText
+  PhoneText,
+  AvatarContainer
 } from './styled-components';
 import { IconButton, useMediaQuery, useTheme } from '@material-ui/core';
 import { EllipsisIcon, PhoneIcon, MailIcon } from './icons';
 import ActionsMenu from '../../ActionsMenu';
+import { AgentAvatarImage } from './../../AgentAvatarImage';
 
 const AgentRow = ({ agent, ...rest }) => {
   const theme = useTheme();
@@ -50,7 +51,9 @@ const AgentRow = ({ agent, ...rest }) => {
   return (
     <Container {...rest} isMobile={isMobile}>
       <Cell isMobile={isMobile}>
-        <AvatarImage src={agent_image} />
+        <AvatarContainer>
+          <AgentAvatarImage height={40} width={40} image={agent_image} agentName={display_name} />
+        </AvatarContainer>
         <AgentInfoContainer isMobile={isMobile}>
           <AgentName isMobile={isMobile}>
             {display_name}
