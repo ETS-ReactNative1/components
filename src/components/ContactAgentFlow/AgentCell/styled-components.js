@@ -25,6 +25,7 @@ export const Container = styled.div`
   padding: 0px 16px;
   display: flex;
   align-items: center;
+  cursor: pointer;
 
   .MuiCheckbox-colorSecondary.Mui-checked {
     color: #37d2be;

@@ -8,11 +8,23 @@ import { getEmailTemplates } from './helpers';
 const NONE_CHIP = { label: 'None', value: 'none' };
 const BODY_LIMIT = 2000;
 
-const EmailTemplate = ({ context, accountType, listing, agentsSelected = [], user }) => {
-  const [currentItem, setCurrentItem] = useState(NONE_CHIP);
+const EmailTemplate = ({
+  context,
+  accountType,
+  listing,
+  agentsSelected = [],
+  user,
+  onChangeDataForm,
+  onChangeTemplate
+}) => {
+  const [currentChipItem, setCurrentChipItem] = useState(NONE_CHIP);
 
-  const [subject, setSubject] = useState('');
-  const [body, setBody] = useState('');
+  const [dataForm, setDataForm] = useState({
+    subject: '',
+    body: ''
+  });
+
+  const { subject, body } = dataForm;
 
   const isBodyValid = useMemo(() => body.length <= BODY_LIMIT, [body]);
 
@@ -26,6 +38,11 @@ const EmailTemplate = ({ context, accountType, listing, agentsSelected = [], use
     [context, listingType, accountType]
   );
 
+  const currentTemplate = useMemo(
+    () => templates.find((template) => template.templateName === currentChipItem.value),
+    [templates, currentChipItem]
+  );
+
   const itemsChips = useMemo(() => {
     const items = templates.map((template) => ({
       label: template.templateName,
@@ -35,33 +52,37 @@ const EmailTemplate = ({ context, accountType, listing, agentsSelected = [], use
   }, [templates]);
 
   useEffect(() => {
-    if (currentItem.value === NONE_CHIP.value || agentsSelected.length === 0) {
-      setSubject('');
-      setBody('');
+    if (currentChipItem.value === NONE_CHIP.value || agentsSelected.length === 0) {
+      setDataForm({ subject: '', body: '' });
       return;
     }
 
-    const template = templates.find((template) => template.templateName === currentItem.value);
-
-    if (template) {
+    if (currentTemplate) {
       const agent = agentsSelected[0];
-      const subject = template.subject({ listing, agent, user });
-      const message = template.message({ listing, agent, user });
+      const subject = currentTemplate.subject({ listing, agent, user });
+      const body = currentTemplate.message({ listing, agent, user });
 
-      setSubject(subject);
-      setBody(message);
+      setDataForm({ subject, body });
     }
-  }, [currentItem, agentsSelected, templates, user]);
+  }, [currentChipItem, agentsSelected, templates, user, currentTemplate]);
+
+  useEffect(() => {
+    onChangeDataForm && onChangeDataForm({ subject, body });
+  }, [subject, body]);
+
+  useEffect(() => {
+    onChangeTemplate && onChangeTemplate(currentTemplate);
+  }, [currentTemplate]);
 
   return (
     <ModalSection title="Email Template">
-      <Chips items={itemsChips} currentItem={currentItem} setCurrentItem={setCurrentItem} />
+      <Chips items={itemsChips} currentItem={currentChipItem} setCurrentItem={setCurrentChipItem} />
       <InputContainer style={{ marginBottom: 12 }}>
         <Input
           label="Subject"
           variant="standard"
           value={subject}
-          onChange={(e) => setSubject(e.target.value)}
+          onChange={(e) => setDataForm((value) => ({ ...value, subject: e.target.value }))}
         />
       </InputContainer>
       <InputContainer>
@@ -71,7 +92,7 @@ const EmailTemplate = ({ context, accountType, listing, agentsSelected = [], use
           variant="standard"
           value={body}
           valid={isBodyValid}
-          onChange={(e) => setBody(e.target.value)}
+          onChange={(e) => setDataForm((value) => ({ ...value, body: e.target.value }))}
         />
       </InputContainer>
     </ModalSection>

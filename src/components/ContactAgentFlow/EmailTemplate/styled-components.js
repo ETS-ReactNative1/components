@@ -23,7 +23,7 @@ export const Input = styled(TextField)`
     font-weight: 400;
     line-height: 20px;
     letter-spacing: 0.20000000298023224px;
-    color: #929aa2;
+    color: #000;
 
     &:focus {
       font-family: GloberAdjusted;

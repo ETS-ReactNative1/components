@@ -6,8 +6,8 @@ import { Container, AvatarContainer, Checkbox, DisplayName } from './styled-comp
 const AgentCell = ({ agent, showCheckbox, checked, onClickCheck }) => {
   const { agent_image, display_name, brokerage_display_name, phone } = agent;
   return (
-    <Container>
-      {showCheckbox && <Checkbox onClick={onClickCheck} checked={checked} />}
+    <Container onClick={showCheckbox && onClickCheck}>
+      {showCheckbox && <Checkbox checked={checked} />}
       <AvatarContainer>
         <AgentAvatarImage height={24} width={24} image={agent_image} agentName={display_name} />
       </AvatarContainer>
