@@ -6,12 +6,29 @@ Object.defineProperty(exports, "__esModule", {
 exports.ArrowBackIcon = ArrowBackIcon;
 exports.ArrowForwardIcon = ArrowForwardIcon;
 exports.CloseIcon = CloseIcon;
+exports.MapPinIcon = MapPinIcon;
+exports.CloseBorderIcon = CloseBorderIcon;
+exports.DropdownIcon = DropdownIcon;
+exports.CheckedIcon = CheckedIcon;
+exports.CheckedBorderIcon = CheckedBorderIcon;
+Object.defineProperty(exports, "MapIcon", {
+  enumerable: true,
+  get: function get() {
+    return _mapIcon["default"];
+  }
+});
 
 var _react = _interopRequireDefault(require("react"));
 
 var _core = require("@material-ui/core");
 
+var _mapIcon = _interopRequireDefault(require("./map-icon"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
@@ -91,5 +108,78 @@ function CloseIcon(props) {
   }), /*#__PURE__*/_react["default"].createElement("path", {
     d: "M0 0h24v24H0z",
     fill: "none"
+  }));
+}
+
+function MapPinIcon(props) {
+  return /*#__PURE__*/_react["default"].createElement(_core.SvgIcon, _extends({}, props, {
+    viewBox: "0 0 288 512"
+  }), /*#__PURE__*/_react["default"].createElement("path", {
+    d: "M112 316.94v156.69l22.02 33.02c4.75 7.12 15.22 7.12 19.97 0L176 473.63V316.94c-10.39 1.92-21.06 3.06-32 3.06s-21.61-1.14-32-3.06zM144 0C64.47 0 0 64.47 0 144s64.47 144 144 144 144-64.47 144-144S223.53 0 144 0zm0 76c-37.5 0-68 30.5-68 68 0 6.62-5.38 12-12 12s-12-5.38-12-12c0-50.73 41.28-92 92-92 6.62 0 12 5.38 12 12s-5.38 12-12 12z"
+  }));
+}
+
+function CloseBorderIcon(props) {
+  return /*#__PURE__*/_react["default"].createElement(_core.SvgIcon, _extends({}, props, {
+    viewBox: "0 0 511.995 511.995"
+  }), /*#__PURE__*/_react["default"].createElement("path", {
+    d: "M437.126,74.939c-99.826-99.826-262.307-99.826-362.133,0C26.637,123.314,0,187.617,0,256.005 s26.637,132.691,74.993,181.047c49.923,49.923,115.495,74.874,181.066,74.874s131.144-24.951,181.066-74.874 C536.951,337.226,536.951,174.784,437.126,74.939z M409.08,409.006c-84.375,84.375-221.667,84.375-306.042,0 c-40.858-40.858-63.37-95.204-63.37-153.001s22.512-112.143,63.37-153.021c84.375-84.375,221.667-84.355,306.042,0 C493.435,187.359,493.435,324.651,409.08,409.006z"
+  }), /*#__PURE__*/_react["default"].createElement("path", {
+    d: "M341.525,310.827l-56.151-56.071l56.151-56.071c7.735-7.735,7.735-20.29,0.02-28.046 c-7.755-7.775-20.31-7.755-28.065-0.02l-56.19,56.111l-56.19-56.111c-7.755-7.735-20.31-7.755-28.065,0.02 c-7.735,7.755-7.735,20.31,0.02,28.046l56.151,56.071l-56.151,56.071c-7.755,7.735-7.755,20.29-0.02,28.046 c3.868,3.887,8.965,5.811,14.043,5.811s10.155-1.944,14.023-5.792l56.19-56.111l56.19,56.111 c3.868,3.868,8.945,5.792,14.023,5.792c5.078,0,10.175-1.944,14.043-5.811C349.28,331.117,349.28,318.562,341.525,310.827z"
+  }));
+}
+
+function DropdownIcon(props) {
+  return /*#__PURE__*/_react["default"].createElement("svg", _extends({
+    width: 12,
+    height: 8,
+    fill: "none",
+    xmlns: "http://www.w3.org/2000/svg"
+  }, props), /*#__PURE__*/_react["default"].createElement("path", {
+    d: "M10 6L6 2 2 6",
+    stroke: "#52585B",
+    strokeWidth: 1.5,
+    strokeLinecap: "square"
+  }));
+}
+
+function CheckedIcon(_ref) {
+  var _ref$fill = _ref.fill,
+      fill = _ref$fill === void 0 ? '#fff' : _ref$fill,
+      _ref$stroke = _ref.stroke,
+      stroke = _ref$stroke === void 0 ? '#7CC5A7' : _ref$stroke,
+      rest = _objectWithoutProperties(_ref, ["fill", "stroke"]);
+
+  return /*#__PURE__*/_react["default"].createElement("svg", _extends({
+    width: 15,
+    height: 15,
+    fill: "none",
+    xmlns: "http://www.w3.org/2000/svg"
+  }, rest), /*#__PURE__*/_react["default"].createElement("path", {
+    fill: fill,
+    stroke: stroke,
+    d: "M.5.5h14v14H.5z"
+  }), /*#__PURE__*/_react["default"].createElement("path", {
+    fill: stroke,
+    d: "M2 2h11v11H2z"
+  }));
+}
+
+function CheckedBorderIcon(_ref2) {
+  var _ref2$fill = _ref2.fill,
+      fill = _ref2$fill === void 0 ? '#fff' : _ref2$fill,
+      _ref2$stroke = _ref2.stroke,
+      stroke = _ref2$stroke === void 0 ? '#7CC5A7' : _ref2$stroke,
+      rest = _objectWithoutProperties(_ref2, ["fill", "stroke"]);
+
+  return /*#__PURE__*/_react["default"].createElement("svg", _extends({
+    width: 15,
+    height: 15,
+    fill: "none",
+    xmlns: "http://www.w3.org/2000/svg"
+  }, rest), /*#__PURE__*/_react["default"].createElement("path", {
+    fill: fill,
+    stroke: stroke,
+    d: "M.5.5h14v14H.5z"
   }));
 }

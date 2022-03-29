@@ -44,7 +44,7 @@ const AgentAvatarImage = ({
   let altText = '';
 
   return (
-    <Container position="relative" bgcolor={bgcolor || 'common.black'} {...restProps}>
+    <Container position="relative" bgcolor={bgcolor || '#000'} {...restProps}>
       {image && (
         <FakeImage
           src={inView ? imageSRC : ''}

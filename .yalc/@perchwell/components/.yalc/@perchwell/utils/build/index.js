@@ -10,7 +10,8 @@ var _exportNames = {
   getFormattedNumber: true,
   getValueByPath: true,
   isNil: true,
-  normalizeData: true
+  normalizeData: true,
+  formatCurrency: true
 };
 Object.defineProperty(exports, "exchangeOriginalImageUrl", {
   enumerable: true,
@@ -54,6 +55,12 @@ Object.defineProperty(exports, "normalizeData", {
     return _normalize["default"];
   }
 });
+Object.defineProperty(exports, "formatCurrency", {
+  enumerable: true,
+  get: function get() {
+    return _operations["default"];
+  }
+});
 
 var _exchangeOriginalImageUrl = _interopRequireDefault(require("./exchange-original-image-url"));
 
@@ -80,5 +87,7 @@ var _getValueByPath = _interopRequireDefault(require("./get-value-by-path"));
 var _isNil = _interopRequireDefault(require("./is-nil"));
 
 var _normalize = _interopRequireDefault(require("./normalize"));
+
+var _operations = _interopRequireDefault(require("./operations"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }

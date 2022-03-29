@@ -1,6 +1,6 @@
 {
   "name": "@perchwell/components",
-  "version": "2.5.0-alpha.11",
+  "version": "2.4.3-alpha.11",
   "description": "Perchwell react components",
   "main": "build/index.js",
   "scripts": {
@@ -10,12 +10,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@perchwell/utils": "file:.yalc/@perchwell/utils",
     "html-react-parser": "^0.13.0",
+    "mapbox-gl": "^1.12.0",
     "react-intersection-observer": "^8.27.1",
+    "react-mapbox-gl": "^4.8.6",
     "react-player": "^2.6.0",
     "react-slick": "^0.27.9",
-    "recharts": "^2.0.10",
+    "use-debounce": "^3.4.2",
     "uuid": "^8.3.0"
   },
   "peerDependencies": {
@@ -24,5 +25,5 @@
     "react-dom": "^16.13.1",
     "styled-components": "^5.1.0"
   },
-  "yalcSig": "b6b5769d6fdfac6e8e88669bc2ae3e89"
+  "yalcSig": "647f53d3f8789eb092acd34d6fbad7b3"
 }

@@ -63,7 +63,9 @@ var ImageBox = function ImageBox(_ref) {
       children = _ref.children,
       containedImage = _ref.containedImage,
       bgcolor = _ref.bgcolor,
-      restProps = _objectWithoutProperties(_ref, ["image", "withFallback", "viewConfig", "children", "containedImage", "bgcolor"]);
+      withGradient = _ref.withGradient,
+      imageGradient = _ref.imageGradient,
+      restProps = _objectWithoutProperties(_ref, ["image", "withFallback", "viewConfig", "children", "containedImage", "bgcolor", "withGradient", "imageGradient"]);
 
   var _useInView = (0, _reactIntersectionObserver.useInView)(viewConfig),
       _useInView2 = _slicedToArray(_useInView, 2),
@@ -88,17 +90,17 @@ var ImageBox = function ImageBox(_ref) {
 
   return /*#__PURE__*/_react["default"].createElement(_core.Box, _extends({
     position: "relative",
-    bgcolor: bgcolor || "common.black"
+    bgcolor: bgcolor || 'common.black'
   }, restProps), image && /*#__PURE__*/_react["default"].createElement(_styledComponents.FakeImage, {
     src: inView ? imageSRC : '',
     ref: ref,
     onLoad: onLoad,
     alt: altText
   }), /*#__PURE__*/_react["default"].createElement(_styledComponents.Placeholder, {
-    backgroundimage: withFallback ? "url(".concat(process.env.IMAGE_PLACEHOLDER_URL, ")") : 'none',
+    backgroundimage: withFallback ? "".concat(!withGradient ? '' : "".concat(imageGradient, ", "), "url(").concat(process.env.IMAGE_PLACEHOLDER_URL, ")") : 'none',
     containedImage: containedImage
   }), /*#__PURE__*/_react["default"].createElement(_styledComponents.Image, {
-    backgroundimage: inView ? "url(".concat(imageSRC, ")") : 'none',
+    backgroundimage: inView ? "".concat(!withGradient ? '' : "".concat(imageGradient, ", "), "url(").concat(imageSRC, ")") : 'none',
     loaded: isLoaded.toString(),
     containedImage: containedImage
   }), /*#__PURE__*/_react["default"].createElement(_styledComponents.BoxSpace, null, children));
@@ -110,7 +112,9 @@ ImageBox.propTypes = {
   bgcolor: _propTypes["default"].string,
   viewConfig: _propTypes["default"].object,
   containedImage: _propTypes["default"].bool,
-  children: _propTypes["default"].oneOfType([_propTypes["default"].arrayOf(_propTypes["default"].node), _propTypes["default"].node])
+  children: _propTypes["default"].oneOfType([_propTypes["default"].arrayOf(_propTypes["default"].node), _propTypes["default"].node]),
+  withGradient: _propTypes["default"].bool,
+  imageGradient: _propTypes["default"].string
 };
 ImageBox.defaultProps = {
   withFallback: true,
@@ -118,7 +122,9 @@ ImageBox.defaultProps = {
     threshold: 0,
     triggerOnce: true,
     rootMargin: '50%'
-  }
+  },
+  withGradient: false,
+  imageGradient: 'linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3))'
 };
 
 var Memo = /*#__PURE__*/_react["default"].memo(ImageBox);

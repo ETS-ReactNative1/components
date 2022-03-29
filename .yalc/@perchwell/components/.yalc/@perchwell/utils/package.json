@@ -1,6 +1,6 @@
 {
   "name": "@perchwell/utils",
-  "version": "2.4.2",
+  "version": "2.5.0-alpha.11",
   "description": "Perchwell utils",
   "main": "build/index.js",
   "scripts": {
@@ -11,8 +11,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@perchwell/domain": "^2.4.2",
+    "@perchwell/domain": "^2.5.0-alpha.7",
     "fuse.js": "^6.0.1"
   },
-  "yalcSig": "31b56647faf004f41062ff382937889c"
+  "yalcSig": "88e5bd41e811e1e247fce48e9ca0e8a6"
 }

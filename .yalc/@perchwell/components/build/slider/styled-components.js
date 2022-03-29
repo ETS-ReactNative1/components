@@ -11,8 +11,6 @@ var _styledComponents = _interopRequireWildcard(require("styled-components"));
 
 var _reactSlick = _interopRequireDefault(require("react-slick"));
 
-var _utils = require("@perchwell/utils");
-
 var _icons = require("../icons");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
@@ -65,14 +63,26 @@ function _templateObject() {
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
+function getValueByPath() {
+  var object = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var path = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+  var current = object;
+  path.split('.').forEach(function (path) {
+    var _current$path, _current;
+
+    current = (_current$path = (_current = current) === null || _current === void 0 ? void 0 : _current[path]) !== null && _current$path !== void 0 ? _current$path : null;
+  });
+  return current;
+}
+
 var commonIconStyles = (0, _styledComponents.css)(_templateObject(), function (_ref) {
   var theme = _ref.theme,
       arrowcolor = _ref.arrowcolor;
-  return (0, _utils.getValueByPath)(theme.palette, arrowcolor);
+  return getValueByPath(theme.palette, arrowcolor);
 }, function (_ref2) {
   var theme = _ref2.theme,
       arrowcolor = _ref2.arrowcolor;
-  return (0, _utils.getValueByPath)(theme.palette, arrowcolor);
+  return getValueByPath(theme.palette, arrowcolor);
 });
 var PrevIcon = (0, _styledComponents["default"])(_icons.ArrowBackIcon)(_templateObject2(), commonIconStyles);
 exports.PrevIcon = PrevIcon;
