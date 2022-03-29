@@ -1,18 +1,20 @@
 import React, { useMemo, useEffect, useState } from 'react';
 import { Chips } from '../Chips';
 import { ModalSection } from '../ModalSection';
-import { Box } from '@material-ui/core';
-import { Input } from './styled-components';
+import { Input, InputContainer, MessageInput } from './styled-components';
 import { ListingTypes } from './const';
 import { getEmailTemplates } from './helpers';
 
 const NONE_CHIP = { label: 'None', value: 'none' };
+const BODY_LIMIT = 2000;
 
 const EmailTemplate = ({ context, accountType, listing, agentsSelected = [], user }) => {
   const [currentItem, setCurrentItem] = useState(NONE_CHIP);
 
   const [subject, setSubject] = useState('');
   const [body, setBody] = useState('');
+
+  const isBodyValid = useMemo(() => body.length <= BODY_LIMIT, [body]);
 
   const listingType = useMemo(() => {
     if (listing.sales_or_rental === 'S') return ListingTypes.Sales;
@@ -54,23 +56,24 @@ const EmailTemplate = ({ context, accountType, listing, agentsSelected = [], use
   return (
     <ModalSection title="Email Template">
       <Chips items={itemsChips} currentItem={currentItem} setCurrentItem={setCurrentItem} />
-      <Box style={{ marginBottom: 12 }}>
+      <InputContainer style={{ marginBottom: 12 }}>
         <Input
           label="Subject"
           variant="standard"
           value={subject}
           onChange={(e) => setSubject(e.target.value)}
         />
-      </Box>
-      <Box>
-        <Input
-          label={`Your message (${body.length}/2000)`}
+      </InputContainer>
+      <InputContainer>
+        <MessageInput
+          label={`Your message (${body.length}/${BODY_LIMIT})`}
           multiline
           variant="standard"
           value={body}
+          valid={isBodyValid}
           onChange={(e) => setBody(e.target.value)}
         />
-      </Box>
+      </InputContainer>
     </ModalSection>
   );
 };

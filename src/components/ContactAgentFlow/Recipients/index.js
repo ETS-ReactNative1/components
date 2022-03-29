@@ -3,6 +3,11 @@ import { AgentCell } from '../AgentCell';
 import { ModalSection } from './../ModalSection';
 import { ErrorMessage } from './styled-components';
 
+function sortAgentsById(data) {
+  const agents = data.sort((a, b) => a.id - b.id);
+  return agents;
+}
+
 const Recipients = ({ agents = [], agentsSelected = [], setAgentsSelected }) => {
   const showCheckbox = useMemo(() => agents.length > 1, [agents]);
   const agentIds = useMemo(() => agentsSelected.map((agent) => agent.id), [agentsSelected]);
@@ -27,10 +32,10 @@ const Recipients = ({ agents = [], agentsSelected = [], setAgentsSelected }) => 
             onClickCheck={() => {
               if (isChecked) {
                 setAgentsSelected((agents) =>
-                  agents.filter((agentSelected) => agentSelected.id !== agent.id)
+                  sortAgentsById(agents.filter((agentSelected) => agentSelected.id !== agent.id))
                 );
               } else {
-                setAgentsSelected((agents) => [...agents, agent]);
+                setAgentsSelected((agents) => sortAgentsById([...agents, agent]));
               }
             }}
           />

@@ -46,12 +46,7 @@ const ContactAgentFlow = ({ isOpen, close, title = 'Contact Agent', listing }) =
           agentsSelected={agentsSelected}
           setAgentsSelected={setAgentsSelected}
         />
-        <Cc
-          onChange={(event) => {
-            event.preventDefault();
-            setUser((user) => ({ ...user, email: event.target.value }));
-          }}
-        />
+        <Cc onChange={(event) => setUser((user) => ({ ...user, email: event.target.value }))} />
         <EmailTemplate
           context={'Listing Detail'}
           listing={listing}
