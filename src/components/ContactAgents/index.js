@@ -1,5 +1,5 @@
-import { useMediaQuery, useTheme } from '@material-ui/core';
 import React from 'react';
+import { useMediaQuery, useTheme } from '@material-ui/core';
 import Panel from '../Panel';
 import { AgentsGroup } from './AgentsGroup';
 import { Container } from './styled-components';
@@ -46,7 +46,7 @@ const buyerAgents = [
   }
 ];
 
-const ContactAgents = () => {
+const ContactAgents = ({ listing }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
@@ -58,14 +58,14 @@ const ContactAgents = () => {
           subheaderText="If you represented the seller in this transaction"
           contactButtonText="Contact Listing Agent"
           agents={sellerAgents}
-          onContactClick={() => {}}
+          listing={listing}
         />
         <AgentsGroup
           title="Buyer"
           subheaderText="If you also represented the buyer in this transaction"
           contactButtonText="Contact Buyer Reps"
           agents={buyerAgents}
-          onContactClick={() => {}}
+          listing={listing}
         />
       </Container>
     </Panel>

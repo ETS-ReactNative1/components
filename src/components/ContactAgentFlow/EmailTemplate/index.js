@@ -6,7 +6,7 @@ import { ListingTypes } from './const';
 import { getEmailTemplates } from './helpers';
 
 const NONE_CHIP = { label: 'None', value: 'none' };
-const BODY_LIMIT = 2000;
+const MESSAGE_LIMIT = 2000;
 
 const EmailTemplate = ({
   context,
@@ -14,19 +14,15 @@ const EmailTemplate = ({
   listing,
   agentsSelected = [],
   user,
-  onChangeDataForm,
+  formState,
+  setFormState,
   onChangeTemplate
 }) => {
   const [currentChipItem, setCurrentChipItem] = useState(NONE_CHIP);
 
-  const [dataForm, setDataForm] = useState({
-    subject: '',
-    body: ''
-  });
+  const { subject, message } = formState;
 
-  const { subject, body } = dataForm;
-
-  const isBodyValid = useMemo(() => body.length <= BODY_LIMIT, [body]);
+  const isMessageValid = useMemo(() => message.length <= MESSAGE_LIMIT, [message]);
 
   const listingType = useMemo(() => {
     if (listing.sales_or_rental === 'S') return ListingTypes.Sales;
@@ -53,22 +49,20 @@ const EmailTemplate = ({
 
   useEffect(() => {
     if (currentChipItem.value === NONE_CHIP.value || agentsSelected.length === 0) {
-      setDataForm({ subject: '', body: '' });
       return;
     }
 
     if (currentTemplate) {
       const agent = agentsSelected[0];
-      const subject = currentTemplate.subject({ listing, agent, user });
-      const body = currentTemplate.message({ listing, agent, user });
 
-      setDataForm({ subject, body });
+      const subjectUpdated = currentTemplate.subject({ listing, agent, user });
+      const messageUpdated = currentTemplate.message({ listing, agent, user });
+
+      if (subjectUpdated !== subject || message !== messageUpdated) {
+        setFormState({ subject: subjectUpdated, message: messageUpdated });
+      }
     }
-  }, [currentChipItem, agentsSelected, templates, user, currentTemplate]);
-
-  useEffect(() => {
-    onChangeDataForm && onChangeDataForm({ subject, body });
-  }, [subject, body]);
+  }, [currentChipItem, agentsSelected, templates, user, currentTemplate, subject, message]);
 
   useEffect(() => {
     onChangeTemplate && onChangeTemplate(currentTemplate);
@@ -76,27 +70,39 @@ const EmailTemplate = ({
 
   return (
     <ModalSection title="Email Template">
-      <Chips items={itemsChips} currentItem={currentChipItem} setCurrentItem={setCurrentChipItem} />
+      <Chips
+        items={itemsChips}
+        currentItem={currentChipItem}
+        setCurrentItem={(item) => {
+          if (item.value === NONE_CHIP.value) {
+            setFormState({ subject: '', message: '' });
+          }
+
+          setCurrentChipItem(item);
+        }}
+      />
       <InputContainer style={{ marginBottom: 12 }}>
         <Input
           label="Subject"
           variant="standard"
           value={subject}
-          onChange={(e) => setDataForm((value) => ({ ...value, subject: e.target.value }))}
+          onChange={(e) => setFormState({ subject: e.target.value })}
         />
       </InputContainer>
       <InputContainer>
         <MessageInput
-          label={`Your message (${body.length}/${BODY_LIMIT})`}
+          label={`Your message (${message.length}/${MESSAGE_LIMIT})`}
           multiline
           variant="standard"
-          value={body}
-          valid={isBodyValid}
-          onChange={(e) => setDataForm((value) => ({ ...value, body: e.target.value }))}
+          value={message}
+          valid={isMessageValid.toString()}
+          onChange={(e) => setFormState({ message: e.target.value })}
         />
       </InputContainer>
     </ModalSection>
   );
 };
 
-export { EmailTemplate };
+const Memo = React.memo(EmailTemplate);
+
+export { Memo as EmailTemplate };

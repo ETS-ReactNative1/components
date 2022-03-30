@@ -1,58 +1,66 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useReducer } from 'react';
 import { Cc } from './Cc';
 import { EmailTemplate } from './EmailTemplate';
-import { agents } from './mock_data';
 import { Recipients } from './Recipients';
 import { ModalBody, ModalFooter, SendEmailButton, Container } from './styled-components';
-import { EMAIL_VALIDATION_PATTERN } from './const';
 import { ModalHeader } from './ModalHeader';
+import reducer, { initialState } from './reducer';
 
 const isEmpty = (text) => text.length === 0;
 
-const ContactAgentFlow = ({ isOpen, close, title = 'Contact Agent', listing }) => {
+const SUBJECT_LENGTH_LIMIT = 100;
+const MESSAGE_LENGTH_LIMIT = 2000;
+
+const ContactAgentFlow = ({
+  isOpen,
+  close,
+  title = 'Contact Agent',
+  listing,
+  agents = [],
+  context = 'Listing Detail'
+}) => {
   const data = agents;
   const [emailTemplate, setEmailTemplate] = useState(null);
 
-  const [user, setUser] = useState({
-    email: '',
-    phone: ''
-  });
-
-  const [emailTemplateData, setEmailTemplateData] = useState({
-    subject: '',
-    body: ''
-  });
-
+  const [formState, setFormState] = useReducer(reducer, initialState);
   const [agentsSelected, setAgentsSelected] = useState(data);
 
+  const { emails, subject, message } = formState;
+
+  const isEmptySubject = subject.trim().length === 0;
+  const isEmptyMessage = message.trim().length === 0;
+  const isInvalidSubjectLength = subject.length > SUBJECT_LENGTH_LIMIT;
+  const isInvalidMessageLength = message.length > MESSAGE_LENGTH_LIMIT;
+
+  const isSendButtonDisabled =
+    emails.length === 0 ||
+    isEmptySubject ||
+    isEmptyMessage ||
+    isInvalidSubjectLength ||
+    isInvalidMessageLength ||
+    isEmpty(agentsSelected);
+
   const handleSendDataForm = () => {
-    if (isValidForm) {
-      let emails = [];
+    if (!isSendButtonDisabled) {
+      let emailsData = [];
       if (!emailTemplate) {
-        emails = agentsSelected.map(() => {
-          const { subject, body } = emailTemplateData;
-          return { subject, body, mail: user.email };
+        emailsData = agentsSelected.map(() => {
+          return { subject, message };
         });
       } else {
-        emails = agentsSelected.map((agent) => {
+        emailsData = agentsSelected.map((agent) => {
+          const user = { email: 'test@test.com' };
           const subject = emailTemplate.subject({ listing, agent, user });
           const body = emailTemplate.message({ listing, agent, user });
-          return { subject, body, mail: user.email };
+          return { subject, body };
         });
       }
     }
   };
 
-  const isValidForm = useMemo(() => {
-    const { subject, body } = emailTemplateData;
-    const { email } = user;
-    if (isEmpty(agentsSelected) || isEmpty(subject) || isEmpty(body) || isEmpty(email)) {
-      return false;
-    }
-    if (!EMAIL_VALIDATION_PATTERN.test(email.toLowerCase())) return false;
-
-    return true;
-  }, [agentsSelected, emailTemplateData, user]);
+  const handleOnChangeFormState = ({ subject, message }) => {
+    setFormState({ type: 'SET_FORM', payload: { subject, message } });
+  };
 
   return (
     <Container open={isOpen}>
@@ -63,19 +71,21 @@ const ContactAgentFlow = ({ isOpen, close, title = 'Contact Agent', listing }) =
           agentsSelected={agentsSelected}
           setAgentsSelected={setAgentsSelected}
         />
-        <Cc onChange={(event) => setUser((user) => ({ ...user, email: event.target.value }))} />
+        {/* <Cc onChange={(event) => setFormState({ email: event.target.value })} /> */}
+        <Cc />
         <EmailTemplate
-          context={'Listing Detail'}
+          context={context}
           listing={listing}
           agentsSelected={agentsSelected}
-          user={user}
+          user={{ email: 'test@test.com' }}
           accountType={'Client'}
-          onChangeDataForm={setEmailTemplateData}
+          formState={formState}
+          setFormState={setFormState}
           onChangeTemplate={setEmailTemplate}
         />
       </ModalBody>
       <ModalFooter>
-        <SendEmailButton onClick={handleSendDataForm} disabled={!isValidForm}>
+        <SendEmailButton onClick={handleSendDataForm} disabled={isSendButtonDisabled}>
           Send Email
         </SendEmailButton>
       </ModalFooter>
@@ -106,3 +116,6 @@ export { ContactAgentFlow };
 // 17.- Find style issues
 // 18.- Migrate to babylon repo
 // 19.- Add api connection
+// 20.- Add mobile version
+// 21.- Add snack bar
+// 22.- Add limit subject message

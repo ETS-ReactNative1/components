@@ -59,6 +59,6 @@ export const MessageInput = styled(Input)`
   }
 
   .Mui-focused {
-    color: ${({ valid }) => (valid ? '#37d2be' : 'red')};
+    color: ${({ valid }) => (valid === 'true' ? '#37d2be' : 'red')};
   }
 `;
