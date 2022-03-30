@@ -10,7 +10,7 @@ export default (state, action) => {
       const emails = [...state.emails];
       const payload = action.payload;
 
-      if (emails.indexOf(payload) === -1) {
+      if (emails.indexOf(payload) === -1 && emails.length < 10) {
         emails.push(payload);
       }
 

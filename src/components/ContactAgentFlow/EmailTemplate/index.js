@@ -6,7 +6,8 @@ import { ListingTypes } from './const';
 import { getEmailTemplates } from './helpers';
 
 const NONE_CHIP = { label: 'None', value: 'none' };
-const MESSAGE_LIMIT = 2000;
+const SUBJECT_LENGTH_LIMIT = 100;
+const MESSAGE_LENGTH_LIMIT = 2000;
 
 const EmailTemplate = ({
   context,
@@ -22,7 +23,8 @@ const EmailTemplate = ({
 
   const { subject, message } = formState;
 
-  const isMessageValid = useMemo(() => message.length <= MESSAGE_LIMIT, [message]);
+  const isInvalidSubjectLength = subject.length > SUBJECT_LENGTH_LIMIT;
+  const isInvalidMessageLength = message.length > MESSAGE_LENGTH_LIMIT;
 
   const listingType = useMemo(() => {
     if (listing.sales_or_rental === 'S') return ListingTypes.Sales;
@@ -86,16 +88,17 @@ const EmailTemplate = ({
           label="Subject"
           variant="standard"
           value={subject}
+          helperText={isInvalidSubjectLength ? 'Subject is too long' : ''}
           onChange={(e) => setFormState({ subject: e.target.value })}
         />
       </InputContainer>
       <InputContainer>
         <MessageInput
-          label={`Your message (${message.length}/${MESSAGE_LIMIT})`}
+          label={`Your message (${message.length}/${MESSAGE_LENGTH_LIMIT})`}
           multiline
           variant="standard"
           value={message}
-          valid={isMessageValid.toString()}
+          helperText={isInvalidMessageLength ? 'Message is too long' : ''}
           onChange={(e) => setFormState({ message: e.target.value })}
         />
       </InputContainer>

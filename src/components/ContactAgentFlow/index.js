@@ -1,4 +1,4 @@
-import React, { useState, useReducer, useCallback } from 'react';
+import React, { useState, useReducer, useCallback, useMemo } from 'react';
 import { Cc } from './Cc';
 import { EmailTemplate } from './EmailTemplate';
 import { Recipients } from './Recipients';
@@ -6,6 +6,7 @@ import { ModalBody, ModalFooter, SendEmailButton, Container } from './styled-com
 import { ModalHeader } from './ModalHeader';
 import reducer, { initialState } from './reducer';
 import CustomizedSnackbars from '../SnackBars';
+import { getEmailsData, getEmailsDataFromTemplate } from './helpers';
 
 const isEmpty = (text) => text.length === 0;
 
@@ -29,6 +30,11 @@ const ContactAgentFlow = ({
 
   const { emails, subject, message } = formState;
 
+  const firstUser = useMemo(
+    () => (isEmpty(emails) ? { email: '' } : { email: emails[0] }),
+    [emails]
+  );
+
   const isEmptySubject = subject.trim().length === 0;
   const isEmptyMessage = message.trim().length === 0;
   const isInvalidSubjectLength = subject.length > SUBJECT_LENGTH_LIMIT;
@@ -44,20 +50,17 @@ const ContactAgentFlow = ({
 
   const handleSendDataForm = () => {
     setOpenSnackbar(true);
+
     if (!isSendButtonDisabled) {
       let emailsData = [];
-      if (!emailTemplate) {
-        emailsData = agentsSelected.map(() => {
-          return { subject, message };
-        });
+      const hasTemplate = !!emailTemplate;
+      if (!hasTemplate) {
+        emailsData = getEmailsData(agentsSelected, subject, message);
       } else {
-        emailsData = agentsSelected.map((agent) => {
-          const user = { email: 'test@test.com' };
-          const subject = emailTemplate.subject({ listing, agent, user });
-          const body = emailTemplate.message({ listing, agent, user });
-          return { subject, body };
-        });
+        emailsData = getEmailsDataFromTemplate(emails, agentsSelected, emailTemplate, listing);
       }
+
+      console.log('emailsData', emailsData);
     }
   };
 
@@ -82,7 +85,7 @@ const ContactAgentFlow = ({
             context={context}
             listing={listing}
             agentsSelected={agentsSelected}
-            user={{ email: 'test@test.com' }}
+            user={firstUser}
             accountType={'Client'}
             formState={formState}
             setFormState={setFormState}
@@ -118,16 +121,14 @@ export { ContactAgentFlow };
 // 9.- Add email validation
 // 10.- Select/Unselect clicking anywhere in agent cell .
 // 11.- Get email templates
-// 13.- Send data
-
-// 12.- Use right modal *
-
+// 21.- Add snack bar
+// 22.- Add limit subject message
 // 14.- Fix preview *
+
+// 20.- Add mobile version
+
 // 15.- Refactor
 // 16.- Add prop-types
 // 17.- Find style issues
 // 18.- Migrate to babylon repo
 // 19.- Add api connection
-// 20.- Add mobile version
-// 21.- Add snack bar
-// 22.- Add limit subject message

@@ -66,6 +66,10 @@ export const MessageInput = styled(Input)`
   }
 
   .Mui-focused {
-    color: ${({ valid }) => (valid === 'true' ? '#37d2be' : 'red')};
+    color: #37d2be;
+  }
+
+  .MuiFormHelperText-root {
+    color: #929aa2;
   }
 `;
