@@ -1,4 +1,4 @@
-import React, { useState, useReducer } from 'react';
+import React, { useState, useReducer, useCallback } from 'react';
 import { Cc } from './Cc';
 import { EmailTemplate } from './EmailTemplate';
 import { Recipients } from './Recipients';
@@ -58,9 +58,7 @@ const ContactAgentFlow = ({
     }
   };
 
-  const handleOnChangeFormState = ({ subject, message }) => {
-    setFormState({ type: 'SET_FORM', payload: { subject, message } });
-  };
+  const handleEmailsChange = useCallback((value) => setFormState({ emails: value }), []);
 
   return (
     <Container open={isOpen}>
@@ -71,8 +69,7 @@ const ContactAgentFlow = ({
           agentsSelected={agentsSelected}
           setAgentsSelected={setAgentsSelected}
         />
-        {/* <Cc onChange={(event) => setFormState({ email: event.target.value })} /> */}
-        <Cc />
+        <Cc emails={emails} onChange={handleEmailsChange} />
         <EmailTemplate
           context={context}
           listing={listing}

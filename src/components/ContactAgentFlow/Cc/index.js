@@ -1,11 +1,20 @@
 import React from 'react';
-import { Input } from '../EmailTemplate/styled-components';
+import EmailAutocomplete from '../../EmailAutoComplete';
 import { ModalSection } from '../ModalSection';
+import useStyles from './styles';
+import { CustomEmailAutocomplete } from './styled-components';
 
-const Cc = ({ onChange }) => {
+const Cc = ({ emails, onChange }) => {
+  const classes = useStyles();
+
   return (
     <ModalSection title="CC">
-      <Input label="Your email" onChange={onChange} variant="standard" required />
+      <CustomEmailAutocomplete
+        classes={{ inputRoot: classes.emailAutocompleteInputRoot }}
+        value={emails}
+        onChangeCallback={onChange}
+        extendInputProps={(props) => ({ ...props, label: 'Your email' })}
+      />
     </ModalSection>
   );
 };
