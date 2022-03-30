@@ -1,6 +1,6 @@
 import React, { useMemo, useEffect, useState } from 'react';
 import { Chips } from './Chips';
-import { ModalSection } from '../ModalSection';
+import { ModalSection } from '../ContactAgentFlow/ModalSection';
 import { Input, InputContainer, MessageInput } from './styled-components';
 import { ListingTypes } from './const';
 import { getEmailTemplates } from './helpers';

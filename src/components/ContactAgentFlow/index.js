@@ -1,6 +1,6 @@
 import React, { useState, useReducer, useCallback, useMemo } from 'react';
 import { Cc } from './Cc';
-import { EmailTemplate } from './EmailTemplate';
+import { EmailTemplate } from '../EmailTemplate';
 import { Recipients } from './Recipients';
 import { ModalBody, ModalFooter, SendEmailButton, Container } from './styled-components';
 import { ModalHeader } from './ModalHeader';
@@ -136,8 +136,8 @@ export { ContactAgentFlow };
 // 14.- Fix preview *
 // 20.- Add mobile version
 // 17.- Find style issues
-
 // 16.- Add prop-types
 // 15.- Refactor files of components
+
 // 18.- Migrate to babylon repo
 // 19.- Add api connection

@@ -1,4 +1,4 @@
-import { AccountTypes, ContactAgentContexts, ListingTypes } from './../const';
+import { AccountTypes, ContactAgentContexts, ListingTypes } from '../const';
 
 const common = {
   accountType: AccountTypes.Broker,
