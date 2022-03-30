@@ -1,7 +1,18 @@
 import styled from 'styled-components';
 import { Dialog } from '@material-ui/core';
 
-export const Container = styled(Dialog)``;
+export const Container = styled(Dialog)`
+  .MuiDialog-paperWidthSm {
+    max-width: 700px;
+    @media (max-width: 1024px) {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      max-height: 100%;
+      max-width: 100%;
+    }
+  }
+`;
 
 export const ModalBody = styled.div`
   padding: 20px 24px 0 24px;
@@ -19,6 +30,10 @@ export const ModalFooter = styled.div`
   align-items: center;
 
   padding: 24px;
+
+  @media (max-width: 600px) {
+    padding: 24px 20px;
+  }
 `;
 
 export const SendEmailButton = styled.div`

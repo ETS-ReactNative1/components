@@ -2,8 +2,12 @@ import React from 'react';
 import { AgentAvatarImage } from '../../AgentAvatarImage';
 import { AgentDetail } from '../AgentDetail';
 import { Container, AvatarContainer, Checkbox, DisplayName } from './styled-components';
+import { useMediaQuery, useTheme } from '@material-ui/core';
 
 const AgentCell = ({ agent, showCheckbox, checked, onClickCheck }) => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
   const { agent_image, display_name, brokerage_display_name, phone } = agent;
   return (
     <Container onClick={showCheckbox ? onClickCheck : undefined}>
@@ -13,7 +17,8 @@ const AgentCell = ({ agent, showCheckbox, checked, onClickCheck }) => {
       </AvatarContainer>
       <DisplayName>{display_name}</DisplayName>
       <AgentDetail icon="briefcase" text={brokerage_display_name} />
-      <AgentDetail icon="phone" text={phone} />
+
+      {!isMobile && <AgentDetail icon="phone" text={phone} />}
     </Container>
   );
 };

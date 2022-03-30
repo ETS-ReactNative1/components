@@ -13,6 +13,10 @@ export const Container = styled.div`
 
 export const IconContainer = styled.div`
   margin-right: 8px;
+
+  @media (max-width: 600px) {
+    margin-right: 4px;
+  }
 `;
 
 export const Text = styled.div`

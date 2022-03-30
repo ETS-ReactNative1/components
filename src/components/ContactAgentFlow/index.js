@@ -35,13 +35,13 @@ const ContactAgentFlow = ({
     [emails]
   );
 
-  const isEmptySubject = subject.trim().length === 0;
-  const isEmptyMessage = message.trim().length === 0;
+  const isEmptySubject = isEmpty(subject.trim());
+  const isEmptyMessage = isEmpty(message.trim());
   const isInvalidSubjectLength = subject.length > SUBJECT_LENGTH_LIMIT;
   const isInvalidMessageLength = message.length > MESSAGE_LENGTH_LIMIT;
 
   const isSendButtonDisabled =
-    emails.length === 0 ||
+    isEmpty(emails) ||
     isEmptySubject ||
     isEmptyMessage ||
     isInvalidSubjectLength ||

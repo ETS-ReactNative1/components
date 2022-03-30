@@ -27,6 +27,10 @@ export const Container = styled.div`
   align-items: center;
   cursor: pointer;
 
+  @media (max-width: 600px) {
+    min-height: 42px;
+  }
+
   .MuiCheckbox-colorSecondary.Mui-checked {
     color: #37d2be;
   }

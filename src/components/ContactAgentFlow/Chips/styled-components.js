@@ -9,9 +9,11 @@ export const Container = styled.div`
 
 export const Chip = styled.div`
   height: 32px;
+  max-height: 32px;
+  min-height: 32px;
   border: 1px solid #e6e9eb;
   background-color: #fff;
-  padding: 7px 14px;
+  padding: 0 10px;
   border-radius: 100px;
   display: flex;
   align-items: center;
