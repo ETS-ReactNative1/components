@@ -13,7 +13,7 @@ const Cc = ({ emails, onChange }) => {
         classes={{ inputRoot: classes.emailAutocompleteInputRoot }}
         value={emails}
         onChangeCallback={onChange}
-        extendInputProps={(props) => ({ ...props, label: 'Your email' })}
+        extendInputProps={(props) => ({ ...props, label: 'Your email', required: 'true' })}
       />
     </ModalSection>
   );

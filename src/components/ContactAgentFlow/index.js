@@ -5,6 +5,7 @@ import { Recipients } from './Recipients';
 import { ModalBody, ModalFooter, SendEmailButton, Container } from './styled-components';
 import { ModalHeader } from './ModalHeader';
 import reducer, { initialState } from './reducer';
+import CustomizedSnackbars from '../SnackBars';
 
 const isEmpty = (text) => text.length === 0;
 
@@ -21,6 +22,7 @@ const ContactAgentFlow = ({
 }) => {
   const data = agents;
   const [emailTemplate, setEmailTemplate] = useState(null);
+  const [openSnackbar, setOpenSnackbar] = useState(false);
 
   const [formState, setFormState] = useReducer(reducer, initialState);
   const [agentsSelected, setAgentsSelected] = useState(data);
@@ -41,6 +43,7 @@ const ContactAgentFlow = ({
     isEmpty(agentsSelected);
 
   const handleSendDataForm = () => {
+    setOpenSnackbar(true);
     if (!isSendButtonDisabled) {
       let emailsData = [];
       if (!emailTemplate) {
@@ -60,33 +63,45 @@ const ContactAgentFlow = ({
 
   const handleEmailsChange = useCallback((value) => setFormState({ emails: value }), []);
 
+  const handleCloseSnackbar = () => {
+    setOpenSnackbar(false);
+  };
+
   return (
-    <Container open={isOpen}>
-      <ModalHeader title={title} handleClose={close} />
-      <ModalBody>
-        <Recipients
-          agents={data}
-          agentsSelected={agentsSelected}
-          setAgentsSelected={setAgentsSelected}
-        />
-        <Cc emails={emails} onChange={handleEmailsChange} />
-        <EmailTemplate
-          context={context}
-          listing={listing}
-          agentsSelected={agentsSelected}
-          user={{ email: 'test@test.com' }}
-          accountType={'Client'}
-          formState={formState}
-          setFormState={setFormState}
-          onChangeTemplate={setEmailTemplate}
-        />
-      </ModalBody>
-      <ModalFooter>
-        <SendEmailButton onClick={handleSendDataForm} disabled={isSendButtonDisabled}>
-          Send Email
-        </SendEmailButton>
-      </ModalFooter>
-    </Container>
+    <React.Fragment>
+      <Container open={isOpen}>
+        <ModalHeader title={title} handleClose={close} />
+        <ModalBody>
+          <Recipients
+            agents={data}
+            agentsSelected={agentsSelected}
+            setAgentsSelected={setAgentsSelected}
+          />
+          <Cc emails={emails} onChange={handleEmailsChange} />
+          <EmailTemplate
+            context={context}
+            listing={listing}
+            agentsSelected={agentsSelected}
+            user={{ email: 'test@test.com' }}
+            accountType={'Client'}
+            formState={formState}
+            setFormState={setFormState}
+            onChangeTemplate={setEmailTemplate}
+          />
+        </ModalBody>
+        <ModalFooter>
+          <SendEmailButton onClick={handleSendDataForm} disabled={isSendButtonDisabled}>
+            Send Email
+          </SendEmailButton>
+        </ModalFooter>
+      </Container>
+
+      <CustomizedSnackbars
+        open={openSnackbar}
+        handleClose={handleCloseSnackbar}
+        text={'Your email has been sent successfully'}
+      />
+    </React.Fragment>
   );
 };
 

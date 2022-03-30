@@ -5,6 +5,14 @@ import EmailAutocomplete from '../../EmailAutoComplete';
 export const CustomEmailAutocomplete = styled(EmailAutocomplete)`
   width: 100%;
 
+  .MuiAutocomplete-inputRoot[class*='MuiInput-root'] {
+    padding-bottom: 10px;
+  }
+
+  .MuiAutocomplete-tag {
+    margin-right: 12px;
+  }
+
   .MuiInputLabel-root {
     font-family: GloberAdjusted;
     font-size: 15px;
@@ -56,7 +64,13 @@ export const CustomEmailAutocomplete = styled(EmailAutocomplete)`
     color: white;
     height: 24px;
     border-radius: 100px;
-    padding: 6px 12px;
+    padding: 5.5px 12px;
+
+    .MuiChip-label {
+      padding-left: 0px;
+      padding-right: 16px;
+    }
+
     svg {
       fill: white;
       height: 7px;

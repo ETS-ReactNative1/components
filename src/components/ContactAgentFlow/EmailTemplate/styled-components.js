@@ -7,6 +7,10 @@ export const InputContainer = styled(Box)``;
 export const Input = styled(TextField)`
   width: 100%;
 
+  .MuiAutocomplete-inputRoot[class*='MuiInput-root'] {
+    padding-bottom: 12px;
+  }
+
   .MuiInputLabel-root {
     font-family: GloberAdjusted;
     font-size: 15px;
@@ -50,6 +54,9 @@ export const Input = styled(TextField)`
 
   .MuiInputLabel-asterisk {
     color: red;
+  }
+  .MuiInputBase-input {
+    padding-bottom: 12px;
   }
 `;
 
