@@ -1,9 +1,10 @@
 import React, { useMemo, useEffect, useState } from 'react';
-import { Chips } from '../Chips';
+import { Chips } from './Chips';
 import { ModalSection } from '../ModalSection';
 import { Input, InputContainer, MessageInput } from './styled-components';
 import { ListingTypes } from './const';
 import { getEmailTemplates } from './helpers';
+import PropTypes from 'prop-types';
 
 const NONE_CHIP = { label: 'None', value: 'none' };
 const SUBJECT_LENGTH_LIMIT = 100;
@@ -104,6 +105,23 @@ const EmailTemplate = ({
       </InputContainer>
     </ModalSection>
   );
+};
+
+EmailTemplate.propTypes = {
+  context: PropTypes.oneOf(['Listing Detail', 'Multi-select']).isRequired,
+  accountType: PropTypes.oneOf(['Client', 'Broker']).isRequired,
+  listing: PropTypes.object.isRequired,
+  agentsSelected: PropTypes.arrayOf(PropTypes.object),
+  user: PropTypes.shape({
+    email: PropTypes.string,
+    phone: PropTypes.string
+  }),
+  formState: PropTypes.shape({
+    subject: PropTypes.string,
+    message: PropTypes.string
+  }),
+  setFormState: PropTypes.func,
+  onChangeTemplate: PropTypes.func
 };
 
 const Memo = React.memo(EmailTemplate);

@@ -3,6 +3,7 @@ import { AgentAvatarImage } from '../../AgentAvatarImage';
 import { AgentDetail } from '../AgentDetail';
 import { Container, AvatarContainer, Checkbox, DisplayName } from './styled-components';
 import { useMediaQuery, useTheme } from '@material-ui/core';
+import PropTypes from 'prop-types';
 
 const AgentCell = ({ agent, showCheckbox, checked, onClickCheck }) => {
   const theme = useTheme();
@@ -21,6 +22,18 @@ const AgentCell = ({ agent, showCheckbox, checked, onClickCheck }) => {
       {!isMobile && <AgentDetail icon="phone" text={phone} />}
     </Container>
   );
+};
+
+AgentCell.propTypes = {
+  agent: PropTypes.object.isRequired,
+  showCheckbox: PropTypes.bool.isRequired,
+  checked: PropTypes.bool.isRequired,
+  onClickCheck: PropTypes.func.isRequired
+};
+
+AgentCell.defaultProps = {
+  showCheckbox: false,
+  checked: false
 };
 
 export { AgentCell };

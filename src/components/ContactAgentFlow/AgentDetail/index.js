@@ -1,6 +1,7 @@
 import React from 'react';
 import { Briefcase, Phone, Email } from './icons';
 import { Container, IconContainer, Text } from './styled-components';
+import PropTypes from 'prop-types';
 
 const iconsMap = {
   briefcase: <Briefcase />,
@@ -17,6 +18,16 @@ const AgentDetail = ({ icon, text, isMobile }) => {
       <Text isMobile={isMobile}>{text}</Text>
     </Container>
   );
+};
+
+AgentDetail.propTypes = {
+  icon: PropTypes.oneOf(['briefcase', 'phone', 'email']),
+  text: PropTypes.string,
+  isMobile: PropTypes.bool
+};
+
+AgentDetail.defaultProps = {
+  isMobile: false
 };
 
 export { AgentDetail };

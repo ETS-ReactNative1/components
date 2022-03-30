@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const ModalTitleContainer = styled.div`
   height: 72px;
+  min-height: 72px;
   width: 100%;
   display: flex;
   flex-direction: center;

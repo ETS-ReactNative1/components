@@ -7,20 +7,14 @@ import { ModalHeader } from './ModalHeader';
 import reducer, { initialState } from './reducer';
 import CustomizedSnackbars from '../SnackBars';
 import { getEmailsData, getEmailsDataFromTemplate } from './helpers';
+import PropTypes from 'prop-types';
 
 const isEmpty = (text) => text.length === 0;
 
 const SUBJECT_LENGTH_LIMIT = 100;
 const MESSAGE_LENGTH_LIMIT = 2000;
 
-const ContactAgentFlow = ({
-  isOpen,
-  close,
-  title = 'Contact Agent',
-  listing,
-  agents = [],
-  context = 'Listing Detail'
-}) => {
+const ContactAgentFlow = ({ isOpen, close, title, listing, agents, context, accountType }) => {
   const data = agents;
   const [emailTemplate, setEmailTemplate] = useState(null);
   const [openSnackbar, setOpenSnackbar] = useState(false);
@@ -86,7 +80,7 @@ const ContactAgentFlow = ({
             listing={listing}
             agentsSelected={agentsSelected}
             user={firstUser}
-            accountType={'Client'}
+            accountType={accountType}
             formState={formState}
             setFormState={setFormState}
             onChangeTemplate={setEmailTemplate}
@@ -108,6 +102,22 @@ const ContactAgentFlow = ({
   );
 };
 
+ContactAgentFlow.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  close: PropTypes.func,
+  title: PropTypes.string,
+  listing: PropTypes.object.isRequired,
+  agents: PropTypes.arrayOf(PropTypes.object).isRequired,
+  context: PropTypes.oneOf(['Listing Detail', 'Multi-select']),
+  accountType: PropTypes.oneOf(['Client', 'Broker'])
+};
+
+ContactAgentFlow.defaultProps = {
+  context: 'Listing Detail',
+  accountType: 'Client',
+  title: 'Contact Agent'
+};
+
 export { ContactAgentFlow };
 
 // 1.- Add dialog
@@ -124,11 +134,10 @@ export { ContactAgentFlow };
 // 21.- Add snack bar
 // 22.- Add limit subject message
 // 14.- Fix preview *
-
 // 20.- Add mobile version
-
-// 15.- Refactor
-// 16.- Add prop-types
 // 17.- Find style issues
+
+// 16.- Add prop-types
+// 15.- Refactor files of components
 // 18.- Migrate to babylon repo
 // 19.- Add api connection
