@@ -10,10 +10,18 @@ import {
   SHTextContainer,
   SHText,
   ClaimListing,
-  ContactButton
+  ContactButton,
+  ContactButtonContainer
 } from './styled-components';
 
-const AgentsGroup = ({ title, subheaderText, contactButtonText, agents = [], listing }) => {
+const AgentsGroup = ({
+  title,
+  subheaderText,
+  contactButtonText,
+  agents = [],
+  listing,
+  brokerageLink
+}) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const [isModalOpened, setIsModalOpened] = useState(false);
@@ -34,15 +42,17 @@ const AgentsGroup = ({ title, subheaderText, contactButtonText, agents = [], lis
               <ClaimListing>Claim Listing</ClaimListing>
             </SHText>
           </SHTextContainer>
-          <ExternalLink url="www.google.com" text="Listing on Brokerage Website" />
+          {!!brokerageLink && <ExternalLink {...brokerageLink} />}
         </SubHeaderContainer>
         {agents.map((agent, index) => (
           <AgentRow key={agent.id || index} agent={agent} isLast={index === agents.length - 1} />
         ))}
 
-        <ContactButton isMobile={isMobile} onClick={() => setIsModalOpened(true)}>
-          {contactButtonText}
-        </ContactButton>
+        <ContactButtonContainer>
+          <ContactButton isMobile={isMobile} onClick={() => setIsModalOpened(true)}>
+            {contactButtonText}
+          </ContactButton>
+        </ContactButtonContainer>
       </Container>
       <ContactAgentFlow
         title={contactButtonText}

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.div`
   position: relative;
@@ -6,14 +6,14 @@ export const Container = styled.div`
   border-radius: 8px;
   height: 32px;
 
-  width: 131px;
+  max-width: 131px;
   margin: 0 auto;
 
   margin-bottom: 23px;
 
   ${({ isMobile }) =>
     isMobile && {
-      width: "100%",
+      width: '100%'
     }}
 `;
 
@@ -36,7 +36,7 @@ export const TabItem = styled.div`
   justify-content: center;
   color: #2a7a7b;
 
-  font-family: "GloberAdjusted";
+  font-family: 'GloberAdjusted';
   font-style: normal;
   font-weight: 700;
   font-size: 13px;
@@ -54,13 +54,13 @@ export const PlaceholderTabContainer = styled.div`
 `;
 
 export const PlaceHolderTabItem = styled.div`
-  width: 50%;
+  width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #606060;
-  font-family: "GloberAdjusted";
+  font-family: 'GloberAdjusted';
   font-style: normal;
   font-weight: 700;
   font-size: 13px;

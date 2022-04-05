@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Box } from '@material-ui/core';
+import { IconButton as IconButtonMUI } from '@material-ui/core';
 
 export const AvatarContainer = styled(Box)`
   width: 40px;
@@ -69,9 +70,11 @@ export const AgentName = styled.div`
   font-weight: 700;
   line-height: 20px;
   letter-spacing: 0.20000000298023224px;
-  width: 15%;
+  width: calc(100% / 3);
+
   display: flex;
   flex-direction: column;
+  color: #000;
   ${({ isMobile }) =>
     isMobile && {
       width: 'auto',

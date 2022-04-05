@@ -50,6 +50,12 @@ const ContactAgents = ({ listing }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
+  const { agents, buyers_agents } = listing;
+
+  const { listing_url = null } = listing;
+
+  const hasListingUrl = !!listing_url;
+
   return (
     <Panel panelTitle="Agents">
       <Container isMobile={isMobile}>
@@ -57,14 +63,17 @@ const ContactAgents = ({ listing }) => {
           title="Sellers"
           subheaderText="If you represented the seller in this transaction"
           contactButtonText="Contact Listing Agent"
-          agents={sellerAgents}
+          agents={agents}
+          brokerageLink={
+            hasListingUrl ? { url: listing_url, text: 'Listing on Brokerage Website' } : null
+          }
           listing={listing}
         />
         <AgentsGroup
           title="Buyer"
           subheaderText="If you also represented the buyer in this transaction"
           contactButtonText="Contact Buyer Reps"
-          agents={buyerAgents}
+          agents={buyers_agents}
           listing={listing}
         />
       </Container>

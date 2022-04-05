@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Panel from '../Panel';
 
 export const Container = styled.div`
   margin-top: 36px;

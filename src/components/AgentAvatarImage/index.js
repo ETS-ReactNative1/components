@@ -2,7 +2,7 @@ import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { useInView } from 'react-intersection-observer';
 
-import { BoxSpace, Placeholder, Image, FakeImage, Container, Initials } from './styled-components';
+import { Image, FakeImage, Container, Initials } from './styled-components';
 
 function getInitial(word) {
   if (word.length > 0) {
@@ -20,23 +20,17 @@ function getInitials(name) {
   return getInitial(name);
 }
 
-const AgentAvatarImage = ({
-  image,
-  withFallback,
-  viewConfig,
-  children,
-  containedImage,
-  bgcolor,
-  withGradient,
-  imageGradient,
-  agentName,
-  ...restProps
-}) => {
+const AgentAvatarImage = ({ image, viewConfig, containedImage, agentName, ...restProps }) => {
   const [ref, inView] = useInView(viewConfig);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [hasError, setHasError] = useState(() => !image);
 
   const onLoad = useCallback(() => {
     setIsLoaded(true);
+  }, []);
+
+  const onError = useCallback(() => {
+    setHasError(true);
   }, []);
 
   const initials = getInitials(agentName);
@@ -44,60 +38,40 @@ const AgentAvatarImage = ({
   let altText = '';
 
   return (
-    <Container position="relative" bgcolor={bgcolor || '#000'} {...restProps}>
+    <Container position="relative" {...restProps}>
       {image && (
         <FakeImage
           src={inView ? imageSRC : ''}
           ref={ref}
           onLoad={onLoad}
-          onError={onLoad}
+          onError={onError}
           alt={altText}
         />
       )}
-      <Placeholder
-        backgroundimage={
-          withFallback
-            ? `${!withGradient ? '' : `${imageGradient}, `}url(${
-                process.env.IMAGE_PLACEHOLDER_URL
-              })`
-            : 'none'
-        }
-        containedImage={containedImage}
-      />
+
       <Image
-        backgroundimage={
-          inView ? `${!withGradient ? '' : `${imageGradient}, `}url(${imageSRC})` : 'none'
-        }
+        backgroundimage={inView ? `url(${imageSRC})` : 'none'}
         loaded={isLoaded.toString()}
         containedImage={containedImage}
       />
-      <BoxSpace>
-        <Initials loaded={isLoaded.toString()}>{initials}</Initials>
-      </BoxSpace>
+      <Initials loaded={hasError.toString()}>{initials}</Initials>
     </Container>
   );
 };
 
 AgentAvatarImage.propTypes = {
   image: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-  withFallback: PropTypes.bool,
-  bgcolor: PropTypes.string,
   viewConfig: PropTypes.object,
   containedImage: PropTypes.bool,
-  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
-  withGradient: PropTypes.bool,
-  imageGradient: PropTypes.string
+  agentName: PropTypes.string.isRequired
 };
 
 AgentAvatarImage.defaultProps = {
-  withFallback: true,
   viewConfig: {
     threshold: 0,
     triggerOnce: true,
     rootMargin: '50%'
-  },
-  withGradient: false,
-  imageGradient: 'linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3))'
+  }
 };
 
 const Memo = React.memo(AgentAvatarImage);

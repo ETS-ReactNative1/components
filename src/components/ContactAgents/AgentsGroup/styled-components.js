@@ -93,3 +93,8 @@ export const ContactButton = styled.div`
       width: '100%'
     }}
 `;
+
+export const ContactButtonContainer = styled.div`
+  display: flex;
+  flex-direction: row-reverse;
+`;

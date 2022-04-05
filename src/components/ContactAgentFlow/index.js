@@ -54,7 +54,7 @@ const ContactAgentFlow = ({ isOpen, close, title, listing, agents, context, acco
         emailsData = getEmailsDataFromTemplate(emails, agentsSelected, emailTemplate, listing);
       }
 
-      console.log('emailsData', emailsData);
+      //TODO: Send email
     }
   };
 
@@ -141,3 +141,4 @@ export { ContactAgentFlow };
 
 // 18.- Migrate to babylon repo
 // 19.- Add api connection
+// 20.- Send emails

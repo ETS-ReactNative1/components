@@ -4,6 +4,9 @@ import { Grid, useMediaQuery, useTheme } from '@material-ui/core';
 import useStyles from './styles';
 import { ListingMock } from './listing_mock';
 import ContactAgents from '../ContactAgents';
+import { Description } from '../Description';
+import Divider from '../Divider';
+import { History } from './../History';
 
 const AppContainer = () => {
   const classes = useStyles();
@@ -16,9 +19,11 @@ const AppContainer = () => {
   return (
     <div className={classes.container}>
       <Grid container>
-        <Grid item md={8} xs={12}>
+        <Grid item md={8}>
           <ContactAgents listing={ListingMock} />
+          <History data={ListingMock.unit} />
         </Grid>
+        <Grid item md={4}></Grid>
       </Grid>
     </div>
   );

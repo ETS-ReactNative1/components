@@ -12,6 +12,10 @@ const iconsMap = {
 const AgentDetail = ({ icon, text, isMobile }) => {
   const iconComponent = iconsMap[icon];
 
+  if (!text) {
+    return null;
+  }
+
   return (
     <Container>
       {!isMobile && <IconContainer>{iconComponent}</IconContainer>}
