@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.div`
   padding-bottom: 18px;
@@ -13,7 +13,7 @@ export const Header = styled.div`
 
 export const Title = styled.div`
   color: #2a7a7b;
-  font-family: "GloberAdjusted";
+  font-family: 'GloberAdjusted';
   font-style: normal;
   font-weight: 700;
   font-size: 17px;
@@ -33,7 +33,7 @@ export const StatusLabel = styled.div`
   flex-direction: row;
   align-items: center;
 
-  font-family: "GloberAdjusted";
+  font-family: 'GloberAdjusted';
   font-style: normal;
   font-weight: 700;
   font-size: 12px;
@@ -43,7 +43,7 @@ export const StatusLabel = styled.div`
 
 export const OwnerLabel = styled.div`
   color: #606060;
-  font-family: "GloberAdjusted";
+  font-family: 'GloberAdjusted';
   font-style: normal;
   font-weight: 400;
   font-size: 13px;
@@ -52,13 +52,7 @@ export const OwnerLabel = styled.div`
 `;
 
 export const ChevronRight = (props) => (
-  <svg
-    width={20}
-    height={20}
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    {...props}
-  >
+  <svg width={20} height={20} fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
     <path
       fillRule="evenodd"
       clipRule="evenodd"

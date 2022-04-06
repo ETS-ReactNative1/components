@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from 'react';
 import {
   Container,
   ListingTextContainer,
@@ -15,42 +15,49 @@ import {
   LinkContainer,
   Link,
   Dot,
-} from "./styled-components";
-import { format } from "date-fns";
-import { ChangeLabel } from "./ChangeLabel";
-import { ExternalLinkIcon } from "./icons";
-import { useMediaQuery, useTheme } from "@material-ui/core";
-import TimeLineDot from "./TimeLineDot";
+  NotVerifiedLabel,
+  ListedWithMobileContainer
+} from './styled-components';
+import { format } from 'date-fns';
+import { ChangeLabel } from './ChangeLabel';
+import { ExternalLinkIcon } from './icons';
+import { useMediaQuery, useTheme } from '@material-ui/core';
+import TimeLineDot from './TimeLineDot';
 
 function formatDate(time) {
-  return format(new Date(time), "M-dd-yy");
+  return format(new Date(time), 'M-dd-yy');
 }
 
 function numberWithCommas(x) {
-  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
 const TextTable = ({ data = [], listingsIds = [] }) => {
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const c = { isMobile };
+  const [currentRow, setCurrentRow] = useState('');
 
-  const renderRightColumn = (j, activity) => {
+  const renderRightSide = (j, activity, hovered) => {
     const hasLinks = !!activity.links.length;
-    const url = !hasLinks ? "" : activity.links[0].url;
-    const linkText = !hasLinks ? "" : activity.links[0].link_text;
+    const url = !hasLinks ? '' : activity.links[0].url;
+    const linkText = !hasLinks ? '' : activity.links[0].link_text;
     return (
       <ListingChangeContainer key={`j-${j}`} {...c}>
         <TitleContainer>
-          <Title>{activity.title}</Title>
+          <Title hovered={hovered}>{activity.title}</Title>
 
           {hasLinks && (
             <Fragment>
               <Dot>&nbsp;•&nbsp;</Dot>
-              <LinkContainer href={url} target="_blank">
-                <Link>{linkText}</Link>
-                <ExternalLinkIcon />
-              </LinkContainer>
+              {linkText.toLowerCase() === 'not verified' ? (
+                <NotVerifiedLabel>{linkText}</NotVerifiedLabel>
+              ) : (
+                <LinkContainer href={url} target="_blank">
+                  <Link>{linkText}</Link>
+                  <ExternalLinkIcon />
+                </LinkContainer>
+              )}
             </Fragment>
           )}
         </TitleContainer>
@@ -60,11 +67,34 @@ const TextTable = ({ data = [], listingsIds = [] }) => {
 
           <ChangeLabel
             {...c}
+            hovered={hovered}
             change={activity.pct_change}
             text={activity.pct_change_text}
           />
         </PriceAndChangeContainer>
       </ListingChangeContainer>
+    );
+  };
+
+  const renderLeftSide = (key, hovered, isMobile, text, activity) => {
+    return (
+      <ListingTextContainer key={key} hovered={hovered} {...c}>
+        {!isMobile && (
+          <React.Fragment>
+            {text && <span>Listed with &nbsp;</span>}
+            <Text
+              {...c}
+              href={activity.listing_id}
+              target="_blank"
+              class="listing-text"
+              hovered={hovered}
+            >
+              {text}
+            </Text>
+          </React.Fragment>
+        )}
+        <DateText hovered={hovered}>{formatDate(activity.time)}</DateText>
+      </ListingTextContainer>
     );
   };
 
@@ -74,30 +104,40 @@ const TextTable = ({ data = [], listingsIds = [] }) => {
         {data.map((item, i) => (
           <ItemContainer key={`i-${i}`}>
             {item.activity.map((activity, j) => {
-              const text = j === 0 ? item.listings[0].text : "";
+              const text = j === 0 ? item.listings[0].text : '';
 
-              const isLastActivity =
-                j === item.activity.length - 1 && i === data.length - 1;
+              const isLastActivity = j === item.activity.length - 1 && i === data.length - 1;
+              const key = `i-${i}-j-${j}`;
 
+              const hovered = currentRow === key;
               return (
-                <Row {...c}>
-                  <ListingTextContainer key={`i-${i}-j-${j}`} {...c}>
-                    {!isMobile && (
-                      <Text {...c} href={activity.listing_id} target="_blank">
+                <div onMouseEnter={() => setCurrentRow(key)} onMouseLeave={() => setCurrentRow('')}>
+                  {isMobile && !!text && (
+                    <ListedWithMobileContainer hovered={hovered}>
+                      {text && <span>Listed with &nbsp;</span>}
+                      <Text
+                        {...c}
+                        href={activity.listing_id}
+                        target="_blank"
+                        class="listing-text"
+                        hovered={hovered}
+                      >
                         {text}
                       </Text>
-                    )}
-                    <DateText>{formatDate(activity.time)}</DateText>
-                  </ListingTextContainer>
-                  <TimeLineDot
-                    currentListingsIds={listingsIds}
-                    terminus={activity.terminus}
-                    listingId={activity.listing_id}
-                    id={`dot-${i}-${j}`}
-                    isLast={isLastActivity}
-                  />
-                  {renderRightColumn(j, activity)}
-                </Row>
+                    </ListedWithMobileContainer>
+                  )}
+                  <Row {...c}>
+                    {renderLeftSide(key, hovered, isMobile, text, activity)}
+                    <TimeLineDot
+                      currentListingsIds={listingsIds}
+                      terminus={activity.terminus}
+                      listingId={activity.listing_id}
+                      id={`dot-${i}-${j}`}
+                      isLast={isLastActivity}
+                    />
+                    {renderRightSide(j, activity, hovered)}
+                  </Row>
+                </div>
               );
             })}
 

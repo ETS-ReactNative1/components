@@ -1,12 +1,12 @@
-import React from "react";
-import { ArrowDown, ArrowUp } from "./icons";
-import { Container, Text } from "./styled-components";
+import React from 'react';
+import { ArrowDown, ArrowUp } from './icons';
+import { Container, Text } from './styled-components';
 
 function getColor(change) {
   if (change < 0) {
-    return "#A82B31";
+    return '#A82B31';
   }
-  return "#2A7A7B";
+  return '#2A7A7B';
 }
 
 function getIcon(change) {
@@ -17,7 +17,7 @@ function getIcon(change) {
   return <ArrowUp />;
 }
 
-const ChangeLabel = ({ change, isMobile }) => {
+const ChangeLabel = ({ change, isMobile, hovered }) => {
   if (Math.abs(change) === 0) {
     return <Container />;
   }
@@ -28,7 +28,7 @@ const ChangeLabel = ({ change, isMobile }) => {
   return (
     <Container isMobile={isMobile}>
       {icon}
-      <Text color={color}>{`${change.toString().replaceAll(".", ",")}%`}</Text>
+      <Text hovered={hovered} color={color}>{`${change.toString().replaceAll('.', ',')}%`}</Text>
     </Container>
   );
 };

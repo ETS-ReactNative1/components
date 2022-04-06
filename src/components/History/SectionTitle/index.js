@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Container,
   Header,
@@ -6,8 +6,8 @@ import {
   ChevronRight,
   StatusContainer,
   StatusLabel,
-  OwnerLabel,
-} from "./styled-components";
+  OwnerLabel
+} from './styled-components';
 
 const SectionTitle = ({ title, status, owner }) => {
   return (
@@ -19,7 +19,7 @@ const SectionTitle = ({ title, status, owner }) => {
       <StatusContainer>
         <StatusLabel>{status}</StatusLabel>
         &nbsp;
-        <OwnerLabel>{`• ${owner}`}</OwnerLabel>
+        {!!owner && <OwnerLabel>{`• Owned by ${owner}`}</OwnerLabel>}
       </StatusContainer>
     </Container>
   );
