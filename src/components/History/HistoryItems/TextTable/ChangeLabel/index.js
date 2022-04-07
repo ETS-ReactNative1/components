@@ -17,7 +17,7 @@ function getIcon(change) {
   return <ArrowUp />;
 }
 
-const ChangeLabel = ({ change, isMobile, hovered }) => {
+const ChangeLabel = ({ change, isMobile, ...rest }) => {
   if (Math.abs(change) === 0) {
     return <Container />;
   }
@@ -28,7 +28,7 @@ const ChangeLabel = ({ change, isMobile, hovered }) => {
   return (
     <Container isMobile={isMobile}>
       {icon}
-      <Text hovered={hovered} color={color}>{`${change.toString().replaceAll('.', ',')}%`}</Text>
+      <Text {...rest} color={color}>{`${change.toString().replaceAll('.', ',')}%`}</Text>
     </Container>
   );
 };

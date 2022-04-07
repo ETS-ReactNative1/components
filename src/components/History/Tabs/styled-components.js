@@ -5,8 +5,8 @@ export const Container = styled.div`
   border: 1px solid #e6e9eb;
   border-radius: 8px;
   height: 32px;
-
-  max-width: 131px;
+  max-height: 32px;
+  width: max-content;
   margin: 0 auto;
 
   margin-bottom: 23px;
@@ -29,7 +29,7 @@ export const TabContainer = styled.div`
 export const TabItem = styled.div`
   border: 1px solid #2a7a7b;
   border-radius: 8px;
-  width: 50%;
+  width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
@@ -48,21 +48,20 @@ export const TabItem = styled.div`
 
 export const PlaceholderTabContainer = styled.div`
   display: absolute;
-  width: 100%;
-  height: 100%;
   display: flex;
+  height: 100%;
 `;
 
 export const PlaceHolderTabItem = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   color: #606060;
   font-family: 'GloberAdjusted';
   font-style: normal;
   font-weight: 700;
   font-size: 13px;
   line-height: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 0px 14px;
 `;
