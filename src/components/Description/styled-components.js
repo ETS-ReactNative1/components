@@ -34,6 +34,10 @@ export const Text = styled(ShowMoreText)`
 
   margin-bottom: 20px;
   text-align: justify;
+  ${({ expanded }) =>
+    !expanded && {
+      whiteSpace: 'nowrap'
+    }}
 `;
 
 export const Button = styled.div`

@@ -8,6 +8,10 @@ import {
 } from './styled-components';
 
 const Tabs = ({ tab: currentTab, onChange, isMobile, tabs }) => {
+  if (tabs.length !== 2) {
+    return null;
+  }
+
   return (
     <Container isMobile={isMobile}>
       <PlaceholderTabContainer isMobile={isMobile}>

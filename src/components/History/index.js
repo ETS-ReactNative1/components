@@ -16,11 +16,19 @@ function getTabs(history) {
   return tabs;
 }
 
+function getCurrentTag(history) {
+  if (history.sales.length > 0) {
+    return 'Sales';
+  }
+  return 'Rentals';
+}
+
 const History = ({ data }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-  const [tab, setCurrentTab] = useState('Sales');
   const { current_owner, history, current_listings } = data;
+
+  const [tab, setCurrentTab] = useState(getCurrentTag(history));
   const current_listings_ids = current_listings.map((listing) => listing.id);
 
   const tabs = getTabs(history);

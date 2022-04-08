@@ -9,6 +9,7 @@ export const Container = styled.div`
 export const Header = styled.div`
   display: flex;
   align-items: center;
+  margin-bottom: 4px;
 `;
 
 export const Title = styled.div`

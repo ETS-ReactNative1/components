@@ -8,7 +8,7 @@ const Description = ({ title, text, isMobile, ...rest }) => {
   const [showButton, setShowButton] = useState(false);
 
   const checkContent = () => {
-    const isContentHidden = Array.from(document.querySelectorAll('#trucated-text')).length > 1;
+    const isContentHidden = Array.from(document.querySelectorAll('#truncated-text')).length > 1;
     setShowButton(isContentHidden);
   };
 
@@ -23,7 +23,6 @@ const Description = ({ title, text, isMobile, ...rest }) => {
   const common = { isMobile };
   return (
     <React.Fragment>
-      <div>{text}</div>
       <Container {...rest}>
         <Title {...common}>{title}</Title>
 
@@ -34,7 +33,7 @@ const Description = ({ title, text, isMobile, ...rest }) => {
           more={''}
           less={''}
           onClick={() => setExpanded((value) => !value)}
-          truncatedEndingComponent={<span id="trucated-text">... </span>}
+          truncatedEndingComponent={<span id="truncated-text">... </span>}
         >
           {text}
         </Text>

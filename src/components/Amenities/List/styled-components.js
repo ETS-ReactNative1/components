@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.div`
   margin-bottom: 40px;
@@ -8,7 +8,7 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.div`
-  font-family: "GloberAdjusted";
+  font-family: 'GloberAdjusted';
   font-size: 20px;
   font-style: normal;
   font-weight: 700;
@@ -19,7 +19,7 @@ export const Title = styled.div`
 `;
 
 export const ListItem = styled.div`
-  font-family: "GloberAdjusted";
+  font-family: 'GloberAdjusted';
   font-size: 13px;
   font-style: normal;
   font-weight: 400;
@@ -28,7 +28,11 @@ export const ListItem = styled.div`
   text-align: left;
   min-width: 100px;
   padding-bottom: 3px;
-  border-bottom: 1px solid #f2f4f6;
   width: max-content;
   margin-bottom: 3px;
+
+  ${({ showBorder }) =>
+    showBorder && {
+      borderBottom: '1px solid #f2f4f6'
+    }}
 `;
