@@ -6,7 +6,20 @@ import { RowMobileTitle } from './RowMobileTitle';
 import { RowRightSide } from './RowRightSide';
 import { RowLeftSide } from './RowLeftSide';
 
+function getActivityText(item, j) {
+  try {
+    if (j === 0 && item.listings.length > 0) {
+      const text = item.listings[0].text;
+      return text;
+    }
+    return '';
+  } catch (e) {
+    return '';
+  }
+}
+
 const TextTable = ({ data = [], listingsIds = [] }) => {
+  console.log('data', data);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
@@ -16,7 +29,7 @@ const TextTable = ({ data = [], listingsIds = [] }) => {
         {data.map((item, i) => (
           <ItemContainer key={`i-${i}`}>
             {item.activity.map((activity, j) => {
-              const text = j === 0 ? item.listings[0].text : '';
+              const text = getActivityText(item, j);
 
               const isLastActivity = j === item.activity.length - 1 && i === data.length - 1;
               const key = `i-${i}-j-${j}`;

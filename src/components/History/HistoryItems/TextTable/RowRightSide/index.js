@@ -43,8 +43,8 @@ const RowRightSide = ({ index, activity, isMobile }) => {
         <ChangeLabel
           isMobile={isMobile}
           className="activity-pct-change"
-          change={activity.pct_change}
-          text={activity.pct_change_text}
+          change={activity.pct_change || ''}
+          text={activity.pct_change_text || ''}
         />
       </PriceAndChangeContainer>
     </ListingChangeContainer>

@@ -8,6 +8,9 @@ import { Description } from '../Description';
 import Divider from '../Divider';
 import { History } from './../History';
 import Amenities from './../Amenities';
+import { PreviewAndCarousel } from '../PreviewAndCarousel';
+import AboutThisProperty from '../AboutThisProperty';
+import { MapDetail } from '../MapDetail';
 
 const AppContainer = () => {
   const classes = useStyles();
@@ -17,22 +20,16 @@ const AppContainer = () => {
 
   const [isDialogOpened, setIsDialogOpened] = useState(true);
   const common = { isMobile };
+  const details = ListingMock;
+
   return (
     <div className={classes.container}>
       <Grid container>
-        <Grid item md={8}>
-          <Divider />
-          <Description
-            title="About this property"
-            text={`Wonderfully grand, bright, and spacious! The spectacular living room with a 13'`}
-          />
-          <Amenities data={ListingMock.sections.find((section) => section.type === 'amenities')} />
-          <Divider />
-          <ContactAgents listing={ListingMock} />
-          <Divider />
-          <History data={ListingMock.unit} />
+        <Grid item sm={12}>
+          {/*  <PreviewAndCarousel listing={details} /> */}
+          <MapDetail listing={details} />
         </Grid>
-        <Grid item md={4}></Grid>
+        <Grid item sm={12}></Grid>
       </Grid>
     </div>
   );

@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Container, Title, Text, Button } from './styled-components';
+import { Container, Title, Text, Button, PreviewText } from './styled-components';
 import { useEventListener } from '../../hooks/useEventListener';
 
 const Description = ({ title, text, isMobile, ...rest }) => {
   const [expanded, setExpanded] = useState(false);
-  const [showButton, setShowButton] = useState(false);
+  const [showButton, setShowButton] = useState(true);
+  const [previewText, setPreviewText] = useState('');
 
   const checkContent = () => {
-    const isContentHidden = Array.from(document.querySelectorAll('#truncated-text')).length > 1;
-    setShowButton(isContentHidden);
+    const isContentHidden = Array.from(document.querySelectorAll('.truncated-text')).length > 1;
+    setShowButton(isContentHidden || expanded);
+    const preview = document.querySelector('#description-container').textContent;
+    setPreviewText(text.substring(0, preview.length));
   };
 
   useEffect(() => {
@@ -26,17 +29,24 @@ const Description = ({ title, text, isMobile, ...rest }) => {
       <Container {...rest}>
         <Title {...common}>{title}</Title>
 
-        <Text
-          lines={expanded ? false : 3}
-          expanded={expanded}
-          fade={showButton && !expanded}
-          more={''}
-          less={''}
-          onClick={() => setExpanded((value) => !value)}
-          truncatedEndingComponent={<span id="truncated-text">... </span>}
-        >
-          {text}
-        </Text>
+        {!expanded && (
+          <PreviewText fade={showButton && !expanded} id="preview-text">
+            {previewText}
+          </PreviewText>
+        )}
+        <div id="description-container">
+          <Text
+            lines={expanded ? 0 : 3}
+            expanded={expanded}
+            more={''}
+            less={''}
+            onClick={() => setExpanded((value) => !value)}
+            truncatedEndingComponent={<span className="truncated-text">... </span>}
+            keepNewLines
+          >
+            {text}
+          </Text>
+        </div>
 
         {showButton && (
           <Button {...common} onClick={() => setExpanded((value) => !value)}>
