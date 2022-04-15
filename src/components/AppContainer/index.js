@@ -11,6 +11,7 @@ import Amenities from './../Amenities';
 import { PreviewAndCarousel } from '../PreviewAndCarousel';
 import AboutThisProperty from '../AboutThisProperty';
 import { MapDetail } from '../MapDetail';
+import NeighborhoodAndTransit from '../NeighborhoodAndTransit';
 
 const AppContainer = () => {
   const classes = useStyles();
@@ -28,6 +29,15 @@ const AppContainer = () => {
         <Grid item sm={12}>
           {/*  <PreviewAndCarousel listing={details} /> */}
           <MapDetail listing={details} />
+          <Divider mt={3} mb={3} />
+          <NeighborhoodAndTransit
+            listing={details}
+            address={details.address_with_unit_hashed}
+            addressSecond={`${details.place_name} • ${details.property_type}`}
+            title="Neighborhood & Transit"
+            transit={details.nearby_transit}
+            location={details.location}
+          />
         </Grid>
         <Grid item sm={12}></Grid>
       </Grid>

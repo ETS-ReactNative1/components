@@ -2,10 +2,7 @@ import React, { useState, useRef } from 'react';
 import { Container, ViewModeButton, ViewModeButtonContainer } from './styled-components';
 import { MapDetailDialog } from '../MapDetailDialog';
 import GoogleMapReact from 'google-map-react';
-
-import { transit } from './transit';
-import { useTheme } from '@material-ui/core/styles';
-import { mapContainerStyle, onlyMapContainerStyle } from '../map-styles';
+import { mapContainerStyle } from '../map-styles';
 import { mapStyling } from '../map-styles';
 import { Marker } from '../Marker';
 
