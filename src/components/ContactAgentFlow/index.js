@@ -24,10 +24,9 @@ const ContactAgentFlow = ({ isOpen, close, title, listing, agents, context, acco
 
   const { emails, subject, message } = formState;
 
-  const firstUser = useMemo(
-    () => (isEmpty(emails) ? { email: '' } : { email: emails[0] }),
-    [emails]
-  );
+  const firstUser = useMemo(() => (isEmpty(emails) ? { email: '' } : { email: emails[0] }), [
+    emails
+  ]);
 
   const isEmptySubject = isEmpty(subject.trim());
   const isEmptyMessage = isEmpty(message.trim());
@@ -64,9 +63,13 @@ const ContactAgentFlow = ({ isOpen, close, title, listing, agents, context, acco
     setOpenSnackbar(false);
   };
 
+  const handleClose = (_, reason) => {
+    if (reason && reason == 'backdropClick') close();
+  };
+
   return (
     <React.Fragment>
-      <Container open={isOpen}>
+      <Container open={isOpen} onClose={handleClose}>
         <ModalHeader title={title} handleClose={close} />
         <ModalBody>
           <Recipients
@@ -119,26 +122,3 @@ ContactAgentFlow.defaultProps = {
 };
 
 export { ContactAgentFlow };
-
-// 1.- Add dialog
-// 2.- Add close icon
-// 3.- Hide checkbox when only 1 agent appears
-// 4.- Select/Deselect agents
-// 5.- Show error message no recipients selected
-// 6.- Add enable disable function
-// 7.- Fix font styles on inputs
-// 8.- Valid form state checking input values
-// 9.- Add email validation
-// 10.- Select/Unselect clicking anywhere in agent cell .
-// 11.- Get email templates
-// 21.- Add snack bar
-// 22.- Add limit subject message
-// 14.- Fix preview *
-// 20.- Add mobile version
-// 17.- Find style issues
-// 16.- Add prop-types
-// 15.- Refactor files of components
-
-// 18.- Migrate to babylon repo
-// 19.- Add api connection
-// 20.- Send emails

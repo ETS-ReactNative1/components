@@ -14,6 +14,7 @@ const Cc = ({ emails, onChange }) => {
         value={emails}
         onChangeCallback={onChange}
         extendInputProps={(props) => ({ ...props, label: 'Your email', required: true })}
+        max={2}
       />
     </ModalSection>
   );

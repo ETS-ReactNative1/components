@@ -71,7 +71,7 @@ const Transit = ({ transit }) => {
   }
 
   return (
-    <Grid item xs={12} sm={6}>
+    <Grid item xs={12}>
       <Container>
         {mappedSection.map((detail, index) => (
           <Fragment key={index}>

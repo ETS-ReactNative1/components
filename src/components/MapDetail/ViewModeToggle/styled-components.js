@@ -7,6 +7,7 @@ export const Container = styled.div`
   position: absolute;
   top: 16px;
   z-index: 10;
+  pointer-events: none;
 `;
 
 export const Toggle = styled.div`
@@ -15,6 +16,7 @@ export const Toggle = styled.div`
   border-radius: 22px;
   padding: 4px;
   display: flex;
+  pointer-events: fill;
 `;
 
 export const ToggleItem = styled.div`

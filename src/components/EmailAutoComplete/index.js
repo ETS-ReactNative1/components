@@ -15,13 +15,23 @@ const useStyles = makeStyles({
   }
 });
 
-const EmailAutocomplete = ({ extendInputProps, value: emails, onChangeCallback, ...props }) => {
+const EmailAutocomplete = ({
+  extendInputProps,
+  value: emails,
+  onChangeCallback,
+  max,
+  ...props
+}) => {
   const [inputValue, setInputValue] = useState('');
   const classes = useStyles();
 
   const handleChange = useCallback(
     (_, value, reason) => {
       if (reason === 'create-option') {
+        if (max && emails.length >= max) {
+          return;
+        }
+
         const lastAddedEmail = value[value.length - 1];
         const isValid = validateEmail(lastAddedEmail);
 
@@ -53,6 +63,10 @@ const EmailAutocomplete = ({ extendInputProps, value: emails, onChangeCallback, 
   );
 
   const handleBlur = useCallback(() => {
+    if (max && emails.length >= max) {
+      return;
+    }
+
     if (validateEmail(inputValue)) {
       if (isEmailExist(inputValue, emails)) {
         onChangeCallback([...emails]);
@@ -71,7 +85,7 @@ const EmailAutocomplete = ({ extendInputProps, value: emails, onChangeCallback, 
       limitTags={3}
       id="email-multiple-tags"
       renderInput={(params) => (
-        <TextField {...params} label="To" {...extendInputProps(params)} onBlur={handleBlur} />
+        <TextField {...params} label="To" {...extendInputProps(params)} onBlur={handleBlur} error />
       )}
       inputValue={inputValue}
       ChipProps={{
@@ -94,12 +108,14 @@ const EmailAutocomplete = ({ extendInputProps, value: emails, onChangeCallback, 
 EmailAutocomplete.propTypes = {
   extendInputProps: PropTypes.func,
   value: PropTypes.arrayOf(PropTypes.string),
-  onChangeCallback: PropTypes.func
+  onChangeCallback: PropTypes.func,
+  max: PropTypes.number
 };
 
 EmailAutocomplete.defaultProps = {
   extendInputProps: () => {},
-  value: []
+  value: [],
+  max: undefined
 };
 
 export default EmailAutocomplete;

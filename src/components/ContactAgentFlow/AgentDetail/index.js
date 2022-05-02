@@ -17,7 +17,7 @@ const AgentDetail = ({ icon, text, isMobile }) => {
   }
 
   return (
-    <Container>
+    <Container isMobile={isMobile}>
       {!isMobile && <IconContainer>{iconComponent}</IconContainer>}
       <Text isMobile={isMobile}>{text}</Text>
     </Container>

@@ -17,11 +17,13 @@ const Recipients = ({ agents, agentsSelected, setAgentsSelected }) => {
 
   return (
     <ModalSection title="Recipients" titleColor={hasAgentsSelected ? '#606060' : '#ea6656'}>
-      {!hasAgentsSelected && (
-        <ErrorMessage>
-          You must select at least one agent to contact buyer representives
-        </ErrorMessage>
-      )}
+      <ErrorMessage>
+        {!hasAgentsSelected ? (
+          'You must select at least one agent to contact buyer representives'
+        ) : (
+          <span>&nbsp;</span>
+        )}
+      </ErrorMessage>
       {agents.map((agent) => {
         const isChecked = agentIds.includes(agent.id);
         return (

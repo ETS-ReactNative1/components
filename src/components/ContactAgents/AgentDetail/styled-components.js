@@ -19,6 +19,11 @@ export const Container = styled.div`
 
 export const IconContainer = styled.div`
   margin-right: 8px;
+  display: flex;
+  align-items: center;
+  & svg {
+    transform: translateY(-1.5px);
+  }
 `;
 
 export const Text = styled.div`

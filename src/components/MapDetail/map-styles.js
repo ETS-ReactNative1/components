@@ -138,8 +138,8 @@ export const useStyles = makeStyles((theme) => ({
       height: 40,
       background: '#37D2BE',
       position: 'absolute',
-      left: 0,
-      top: -20,
+      left: -22,
+      top: -60,
       boxShadow: '-1px 1px 4px rgba(0, 0, 0, .5)'
     }
   },
@@ -286,7 +286,7 @@ export const mapStyling = [
 export const mapContainerStyle = {
   position: 'relative',
   width: '100%',
-  height: 'calc(100vh - 72px)'
+  height: 646
 };
 
 export const onlyMapContainerStyle = {

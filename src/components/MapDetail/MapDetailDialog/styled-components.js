@@ -29,11 +29,11 @@ export const Container = styled(Dialog)`
 
 export const Body = styled.div`
   width: 100%;
-  height: 646px;
+  max-height: 646px;
   position: relative;
 `;
 
 export const MapContainer = styled.div`
   width: 100%;
-  height: 646px;
+  max-height: 646px;
 `;

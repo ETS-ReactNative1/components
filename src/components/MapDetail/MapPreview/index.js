@@ -1,5 +1,12 @@
 import React, { useState, useRef } from 'react';
-import { Container, ViewModeButton, ViewModeButtonContainer } from './styled-components';
+import {
+  Container,
+  ViewModeButton,
+  ViewModeButtonContainer,
+  Center,
+  Horizontal,
+  Vertical
+} from './styled-components';
 import { MapDetailDialog } from '../MapDetailDialog';
 import GoogleMapReact from 'google-map-react';
 import { mapContainerStyle } from '../map-styles';
@@ -54,6 +61,9 @@ const MapPreview = ({ listing }) => {
         mapRef={mapRef}
         location={location}
       />
+      <Center />
+      <Horizontal />
+      <Vertical />
     </Container>
   );
 };

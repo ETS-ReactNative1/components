@@ -50,10 +50,6 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: 10,
     paddingBottom: 11,
     flexWrap: 'wrap',
-    '&:hover': {
-      backgroundColor: '#EDEDED',
-      cursor: 'pointer'
-    },
     [theme.breakpoints.down('600')]: {
       display: 'block'
     }

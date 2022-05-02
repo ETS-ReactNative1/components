@@ -1,22 +1,20 @@
-const apiIsLoaded = (map, visibility = true) => {
-  if (map) {
-    const astorPlace = {
-      lat: location.lat,
-      lng: location.lon
-    };
+import { mapStyling } from './map-styles';
 
-    const panorama = map.getStreetView(); // TODO fix type
-    panorama.setPosition(astorPlace);
-    panorama.setPov(
-      /** @type {google.maps.StreetViewPov} */ {
-        heading: 265,
-        pitch: 0
-      }
-    );
-    panorama.setVisible(visibility);
-    map.setStreetView(panorama);
-    setPanorama(panorama);
-  }
-};
+function mapOptionsCreator(map) {
+  return {
+    styles: mapStyling,
+    scrollwheel: false,
+    zoomControlOptions: {
+      position: map.ControlPosition.RIGHT_TOP,
+      style: map.ZoomControlStyle.SMALL
+    },
+    draggable: false,
+    rotateControl: false,
+    scaleControl: false,
+    streetViewControl: false,
+    panControl: false,
+    fullscreenControl: false
+  };
+}
 
-export { apiIsLoaded };
+export { mapOptionsCreator };

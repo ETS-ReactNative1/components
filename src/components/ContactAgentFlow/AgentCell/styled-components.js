@@ -25,7 +25,6 @@ export const Container = styled.div`
   padding: 0px 16px;
   display: flex;
   align-items: center;
-  cursor: pointer;
 
   @media (max-width: 600px) {
     min-height: 42px;
@@ -34,6 +33,11 @@ export const Container = styled.div`
   .MuiCheckbox-colorSecondary.Mui-checked {
     color: #37d2be;
   }
+
+  ${({ clickable }) =>
+    clickable && {
+      cursor: 'pointer'
+    }}
 `;
 
 export const DisplayName = styled.div`
@@ -43,5 +47,18 @@ export const DisplayName = styled.div`
   font-weight: 400;
   line-height: 18px;
   letter-spacing: 0.20000000298023224px;
+  width: calc(100% / 3);
+
+  ${({ isMobile }) =>
+    isMobile && {
+      width: '100%'
+    }}
+`;
+
+export const AgentInfoContainer = styled.div`
   flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid red;
 `;

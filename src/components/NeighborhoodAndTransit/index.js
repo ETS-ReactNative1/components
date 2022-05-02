@@ -11,7 +11,7 @@ const NeighborhoodAndTransit = ({ title, listing }) => {
     <Panel panelTitle={title}>
       <Grid container spacing={2} justify="center">
         <React.Fragment>
-          <Grid item xs={12} sm={!transit ? 12 : 6}>
+          <Grid item xs={12} sm={12}>
             <MapPreview listing={listing} />
           </Grid>
           <Transit transit={transit} />
@@ -27,5 +27,3 @@ NeighborhoodAndTransit.propTypes = {
 };
 
 export default NeighborhoodAndTransit;
-
-//TODO: Fix position of street view button

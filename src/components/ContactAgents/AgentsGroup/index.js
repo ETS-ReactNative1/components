@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useMediaQuery, useTheme } from '@material-ui/core';
 import { ContactAgentFlow } from '../../ContactAgentFlow';
 import { ExternalLink } from '../../ExternalLink';
@@ -25,10 +25,16 @@ const AgentsGroup = ({
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const [isModalOpened, setIsModalOpened] = useState(false);
+  const [agentsSelected, setAgentsSelected] = useState([]);
 
   if (agents.length === 0) {
     return null;
   }
+
+  const handleOnAgentClick = useCallback((agent) => {
+    setAgentsSelected([agent]);
+    setIsModalOpened(true);
+  }, []);
 
   return (
     <React.Fragment>
@@ -45,18 +51,29 @@ const AgentsGroup = ({
           {!!brokerageLink && <ExternalLink {...brokerageLink} />}
         </SubHeaderContainer>
         {agents.map((agent, index) => (
-          <AgentRow key={agent.id || index} agent={agent} isLast={index === agents.length - 1} />
+          <AgentRow
+            onClick={() => handleOnAgentClick(agent)}
+            key={agent.id || index}
+            agent={agent}
+            isLast={index === agents.length - 1}
+          />
         ))}
 
         <ContactButtonContainer>
-          <ContactButton isMobile={isMobile} onClick={() => setIsModalOpened(true)}>
+          <ContactButton
+            isMobile={isMobile}
+            onClick={() => {
+              setAgentsSelected(agents);
+              setIsModalOpened(true);
+            }}
+          >
             {contactButtonText}
           </ContactButton>
         </ContactButtonContainer>
       </Container>
       <ContactAgentFlow
         title={contactButtonText}
-        agents={agents}
+        agents={agentsSelected}
         isOpen={isModalOpened}
         close={() => setIsModalOpened(false)}
         listing={listing}

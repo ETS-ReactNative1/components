@@ -27,17 +27,23 @@ const AppContainer = () => {
     <div className={classes.container}>
       <Grid container>
         <Grid item sm={12}>
-          {/*  <PreviewAndCarousel listing={details} /> */}
-          <MapDetail listing={details} />
-          <Divider mt={3} mb={3} />
           <NeighborhoodAndTransit
             listing={details}
             address={details.address_with_unit_hashed}
             addressSecond={`${details.place_name} • ${details.property_type}`}
-            title="Neighborhood & Transit"
+            title="Location"
             transit={details.nearby_transit}
             location={details.location}
           />
+
+          <Divider mt={3} mb={3} />
+          {/* <PreviewAndCarousel listing={details} />
+          <MapDetail listing={details} /> 
+          <Divider mt={3} mb={3} />
+          
+          <Divider mt={3} mb={3} />
+          {/*   <ContactAgents listing={details} /> */}
+          {/*   <History data={details} /> */}
         </Grid>
         <Grid item sm={12}></Grid>
       </Grid>

@@ -35,6 +35,10 @@ export const ViewModeButton = styled.div`
   cursor: pointer;
 
   box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.12);
+
+  :hover {
+    background-color: #f2f4f6;
+  }
 `;
 
 export const ZoomControls = styled.div`
@@ -46,4 +50,35 @@ export const ZoomControls = styled.div`
   background-color: #fff;
   width: 33px;
   height: 56px;
+`;
+
+export const Center = styled.div`
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background-color: red;
+  border-radius: 50%;
+  top: calc(50% - 2.5px);
+  left: calc(50% - 2.5px);
+  opacity: 0.2;
+`;
+
+export const Horizontal = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  top: calc(50% - 0.5px);
+  left: 0;
+  background-color: green;
+  opacity: 0.2;
+`;
+
+export const Vertical = styled.div`
+  position: absolute;
+  width: 1px;
+  height: 100%;
+  top: 0;
+  left: calc(50% - 0.5px);
+  background-color: green;
+  opacity: 0.2;
 `;
