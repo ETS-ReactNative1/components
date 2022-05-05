@@ -691,6 +691,35 @@ const Calendar = (props) => (
   </svg>
 );
 
+const SendIcon = (props) => (
+  <svg width={17} height={16} fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <g clipPath="url(#a)">
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M14.971 1.53a.665.665 0 0 1 .153.705l-4.661 13.32a.667.667 0 0 1-1.239.05L6.662 9.839.896 7.277a.667.667 0 0 1 .05-1.239l13.32-4.662a.667.667 0 0 1 .705.153Zm-3.008 2.065L2.974 6.741 7.02 8.54l4.944-4.944ZM7.962 9.482l4.944-4.944-3.146 8.989-1.798-4.045Z"
+        fill="#2A7A7B"
+      />
+    </g>
+    <defs>
+      <clipPath id="a">
+        <path fill="#fff" transform="translate(.5)" d="M0 0h16v16H0z" />
+      </clipPath>
+    </defs>
+  </svg>
+);
+
+const MoreVertical = (props) => (
+  <svg width={16} height={16} fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M6.667 3.333a1.333 1.333 0 1 1 2.666 0 1.333 1.333 0 0 1-2.667 0Zm0 4.667a1.333 1.333 0 1 1 2.666 0 1.333 1.333 0 0 1-2.667 0ZM8 11.333A1.333 1.333 0 1 0 8 14a1.333 1.333 0 0 0 0-2.667Z"
+      fill="#2A7A7B"
+    />
+  </svg>
+);
+
 export {
   AnalyticsIcon,
   ArrowLeftIcon,
@@ -732,5 +761,7 @@ export {
   Check,
   PenIcon,
   CircleTagIcon,
-  Calendar
+  Calendar,
+  SendIcon,
+  MoreVertical
 };

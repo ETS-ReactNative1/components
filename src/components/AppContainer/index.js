@@ -12,12 +12,18 @@ import { PreviewAndCarousel } from '../PreviewAndCarousel';
 import AboutThisProperty from '../AboutThisProperty';
 import { MapDetail } from '../MapDetail';
 import NeighborhoodAndTransit from '../NeighborhoodAndTransit';
+import { ShareListing } from '../ShareListing';
+import MoreInfo from '../MoreInfo';
+import BuildingMaManagement from '../BuildingManagement';
+import { BuildingMock } from './building_mock';
+import Financials from '../Financials';
 
 const AppContainer = () => {
   const classes = useStyles();
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const building = BuildingMock;
 
   const [isDialogOpened, setIsDialogOpened] = useState(true);
   const common = { isMobile };
@@ -26,8 +32,8 @@ const AppContainer = () => {
   return (
     <div className={classes.container}>
       <Grid container>
-        <Grid item sm={12}>
-          <NeighborhoodAndTransit
+        <Grid item sm={8}>
+          {/* <NeighborhoodAndTransit
             listing={details}
             address={details.address_with_unit_hashed}
             addressSecond={`${details.place_name} • ${details.property_type}`}
@@ -35,15 +41,22 @@ const AppContainer = () => {
             transit={details.nearby_transit}
             location={details.location}
           />
-
+ */}
           <Divider mt={3} mb={3} />
+          <Financials data={building} />
+          {/*   <BuildingMaManagement building={building} /> */}
+          {/* <MoreInfo
+            title="Details"
+            amenities={details.sections.find((section) => section.type === 'more_info')}
+          /> */}
           {/* <PreviewAndCarousel listing={details} />
           <MapDetail listing={details} /> 
           <Divider mt={3} mb={3} />
           
           <Divider mt={3} mb={3} />
           {/*   <ContactAgents listing={details} /> */}
-          {/*   <History data={details} /> */}
+          {/*  <History data={details} /> */}
+          {/* <ShareListing /> */}
         </Grid>
         <Grid item sm={12}></Grid>
       </Grid>

@@ -12,13 +12,14 @@ export const Header = styled.div`
   margin-bottom: 4px;
 `;
 
-export const Title = styled.div`
+export const Title = styled.a`
   color: #2a7a7b;
   font-family: 'GloberAdjusted';
   font-style: normal;
   font-weight: 700;
   font-size: 17px;
   line-height: 22px;
+  text-decoration: none;
 `;
 
 export const StatusContainer = styled.div`
