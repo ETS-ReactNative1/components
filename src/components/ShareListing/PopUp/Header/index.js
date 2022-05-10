@@ -1,6 +1,6 @@
 import React from 'react';
 import { IconButton } from '@material-ui/core';
-import { CloseIcon } from '../icons';
+import { CloseIcon } from '../../../../icons';
 import { ModalTitleContainer, ModalTitle, IconContainer } from './styled-components';
 import PropTypes from 'prop-types';
 

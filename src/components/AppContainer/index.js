@@ -43,7 +43,7 @@ const AppContainer = () => {
           />
  */}
           <Divider mt={3} mb={3} />
-          <Financials data={building} />
+          {/*  <Financials data={building} /> */}
           {/*   <BuildingMaManagement building={building} /> */}
           {/* <MoreInfo
             title="Details"
@@ -56,7 +56,7 @@ const AppContainer = () => {
           <Divider mt={3} mb={3} />
           {/*   <ContactAgents listing={details} /> */}
           {/*  <History data={details} /> */}
-          {/* <ShareListing /> */}
+          <ShareListing />
         </Grid>
         <Grid item sm={12}></Grid>
       </Grid>

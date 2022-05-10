@@ -15,11 +15,13 @@ export const Container = styled(Dialog)`
 `;
 
 export const Body = styled.div`
-  padding: 20px 24px 0 24px;
+  padding: 20px 24px 46px 24px;
   background-color: #fafbfb;
   flex: 1;
   border-top: 1px solid #e6e9eb;
   border-bottom: 1px solid #e6e9eb;
+  min-width: 600px;
+  ${({ bodyStyle }) => bodyStyle}
 `;
 
 export const Footer = styled.div`
@@ -36,7 +38,7 @@ export const Footer = styled.div`
   }
 `;
 
-export const SendEmailButton = styled.div`
+export const SubmitButton = styled.div`
   cursor: pointer;
   border-radius: 8px;
   background-color: #37d2be;

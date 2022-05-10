@@ -720,6 +720,34 @@ const MoreVertical = (props) => (
   </svg>
 );
 
+const ClipboardIcon = (props) => (
+  <svg width={16} height={16} fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M6 .667c-.736 0-1.333.597-1.333 1.333H4a2 2 0 0 0-2 2v9.333a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-.667c0-.736-.597-1.333-1.333-1.333H6Zm5.333 2.666c0 .737-.597 1.334-1.333 1.334H6a1.333 1.333 0 0 1-1.333-1.334H4A.667.667 0 0 0 3.333 4v9.333A.667.667 0 0 0 4 14h8a.667.667 0 0 0 .667-.667V4A.667.667 0 0 0 12 3.333h-.667ZM6 2.667v.666h4V2H6v.667Z"
+      fill="#2A7A7B"
+    />
+  </svg>
+);
+
+const CopyIcon = (props) => (
+  <svg width={16} height={16} fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M7.333 6.667a.667.667 0 0 0-.666.667v6c0 .368.298.667.667.667h6a.667.667 0 0 0 .666-.667v-6a.667.667 0 0 0-.666-.667h-6Zm-2 .667a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-6a2 2 0 0 1-2-2v-6Z"
+      fill="#2A7A7B"
+    />
+    <path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M2.667 2A.667.667 0 0 0 2 2.665v6a.667.667 0 0 0 .667.667h.666a.667.667 0 0 1 0 1.333h-.667a2 2 0 0 1-2-2v-6a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v.667a.667.667 0 0 1-1.333 0v-.667a.667.667 0 0 0-.667-.667h-6Z"
+      fill="#2A7A7B"
+    />
+  </svg>
+);
+
 export {
   AnalyticsIcon,
   ArrowLeftIcon,
@@ -763,5 +791,7 @@ export {
   CircleTagIcon,
   Calendar,
   SendIcon,
-  MoreVertical
+  MoreVertical,
+  ClipboardIcon,
+  CopyIcon
 };

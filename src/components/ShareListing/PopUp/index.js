@@ -1,13 +1,13 @@
 import React from 'react';
 import { Header } from './Header';
-import { Container, Body, Footer } from './styled-components';
+import { Container, Body, Footer, SubmitButton } from './styled-components';
 
-const PopUp = ({ title, open, onClose, children }) => {
+const PopUp = ({ title, open, onClose, children, submitTextButton = '', bodyStyle = {} }) => {
   return (
-    <Container open={open} onClose={onClose}>
+    <Container open={open} onClose={onClose} fullWidth>
       <Header title={title} handleClose={onClose} />
-      <Body>{children}</Body>
-      <Footer></Footer>
+      <Body bodyStyle={bodyStyle}>{children}</Body>
+      <Footer>{!!submitTextButton && <SubmitButton>{submitTextButton}</SubmitButton>}</Footer>
     </Container>
   );
 };
